@@ -1,15 +1,12 @@
 import React from "react";
 import AuthService from "../service/AuthService";
-import * as Val from '../Values'
+import * as RS from '../constants/ResponseStatus'
 import { Navigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
-
-const tg = window.Telegram.WebApp;
+import UserService from '../entityService/UserService'
 
 export default function Confirm() {
-    let userId = tg.initDataUnsafe?.user?.id
-
-    const [smsCode, setSmsCode] = React.useState(1);
+    let userId = UserService.getUser().id
+    const [smsCode, setSmsCode] = React.useState('');
 
     const [msg, setMsg] = React.useState('')
     const [isAutheticated, setAuthenticated] = React.useState(false)
@@ -26,14 +23,14 @@ export default function Confirm() {
         event.preventDefault()
         AuthService.confirm(userId, smsCode).then(
             response => {
-                if(response.status === Val.SUCCESS){
-                    localStorage.setItem('user', {'isAuthenticated':true})
+                if(response.status === RS.SUCCESS){
+                    UserService.setUserAuthenticated()
                     setAuthenticated(true)
                 }               
             },
             error => {
                 const statusCode = error.response.status
-                if (statusCode === Val.BAD_REQUEST)
+                if (statusCode === RS.BAD_REQUEST)
                     setMsg("Noto'g'ri ma'lumot")
                 else
                     setMsg('Unknown error: ' + statusCode)
@@ -45,32 +42,20 @@ export default function Confirm() {
         <div className='container'>
             <div className="col-md-12 card">
                 <form className='form' onSubmit={handleSubmit}>
-                    <h5 style={{textAlign:'center'}} className="mb-2">Kirish</h5>
+                    <h5  className="mb-2 form-header">Kodni tasdiqlash</h5>
                     <div className='form-group mb-3'>
                         <input
-                            type='phoneNumber'
+                            type='text'
                             className='form-control'
-                            id='phoneNumber'
-                            value={loginUser.phoneNumber}
-                            name='phoneNumber'
+                            id='kod'
+                            value={smsCode}
+                            name='kod'
                             onChange={handleChange}
-                            placeholder='Telefon raqam'
+                            placeholder='Tasdiqlash kodi'
                             required
                         />
                     </div>
 
-                    <div className='form-group mb-4'>
-                        <input
-                            type='password'
-                            className='form-control'
-                            id='password'
-                            value={loginUser.password}
-                            name='password'
-                            onChange={handleChange}
-                            placeholder='Parol'
-                            required="required"
-                        />
-                    </div>
                     <div className='form-group mb-3'>
                         <button type='submit' className='btn btn-primary col-md-12'>
                             Yuborish
@@ -78,10 +63,7 @@ export default function Confirm() {
                     </div>
                     <div className='form-group'>
                         {msg && <h6 style={{color:"red"}}>{msg}</h6>}
-                    </div>  
-                    <div className='form-group'>
-                       Hisobingiz yo'qmi? <Link to="/register">Ro'yhatdan o'ting!</Link>
-                    </div>        
+                    </div>       
                 </form>
             </div>
         </div>)

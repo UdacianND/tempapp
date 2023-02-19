@@ -1,15 +1,16 @@
 import React from "react";
 import AuthService from "../service/AuthService";
-import * as Val from '../Values'
+import * as RS from '../constants/ResponseStatus'
 import { Navigate } from "react-router-dom";
-import L from "./L"
+import { Link } from 'react-router-dom';
 
 export default function Register() {
 
     const [user, setUser] = React.useState({
-        phoneNumber: '',
+        phoneNumber: '+998',
         password: ''
     });
+    localStorage.setItem("temp","temp")
 
     const [msg, setMsg] = React.useState('')
     const [isRegistered, setRegistered] = React.useState(false)
@@ -27,17 +28,16 @@ export default function Register() {
 
     function handleSubmit(event) {
         event.preventDefault()
-        console.log(user)
         AuthService.register(user).then(
             response => {
-                if(response.status === Val.SUCCESS){
+                if(response.status === RS.SUCCESS){
                     setMsg('Ok')
                     setRegistered(true)
                 }               
             },
             error => {
                 const statusCode = error.response.status
-                if (statusCode === Val.PHONE_NUMBER_EXISTS)
+                if (statusCode === RS.PHONE_NUMBER_EXISTS)
                     setMsg('Raqam oldindan mavjud')
                 else
                     setMsg('Error')
@@ -49,7 +49,7 @@ export default function Register() {
         <div className='container'>
             <div className="col-md-12 card">
                 <form className='form' onSubmit={handleSubmit}>
-                    <h5 style={{textAlign:'center'}} className="mb-2">Register</h5>
+                    <h5  className="mb-2 form-header">Ro'yhatdan o'tish</h5>
                     <div className='form-group mb-3'>
                         <input
                             type='text'
@@ -58,7 +58,8 @@ export default function Register() {
                             value={user.phoneNumber}
                             name='phoneNumber'
                             onChange={handleChange}
-                            placeholder='Telefon raqam'
+                            placeholder='Tel: +998914443359'
+                            pattern="[+][998][0-9]{11}"
                         />
                     </div>
 
@@ -76,12 +77,15 @@ export default function Register() {
                     </div>
                     <div className='form-group mb-3'>
                         <button type='submit' className='btn btn-primary col-md-12'>
-                            <L w = "register"/>
+                            Yuborish
                         </button>
                     </div>
                     <div className='form-group'>
                         {msg && <h6 style={{color:"red"}}>{msg}</h6>}
-                    </div>          
+                    </div>      
+                    <div className='form-group'>
+                       <Link to="/login">Kirish</Link>
+                    </div>     
                 </form>
             </div>
         </div>)

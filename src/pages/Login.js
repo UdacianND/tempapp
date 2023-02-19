@@ -1,13 +1,14 @@
 import React from "react";
 import AuthService from "../service/AuthService";
-import * as Val from '../Values'
+import * as RS from '../constants/ResponseStatus'
 import { Navigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import UserService from '../entityService/UserService'
 
 export default function Login() {
 
     const [loginUser, setLoginUser] = React.useState({
-        phoneNumber: '',
+        phoneNumber: '+998',
         password: ''
     });
 
@@ -29,14 +30,14 @@ export default function Login() {
         event.preventDefault()
         AuthService.login(loginUser).then(
             response => {
-                if(response.status === Val.SUCCESS){
-                    localStorage.setItem('user', {'isAuthenticated':true})
+                if(response.status === RS.SUCCESS){
+                    UserService.setUserAuthenticated()
                     setAuthenticated(true)
                 }               
             },
             error => {
                 const statusCode = error.response.status
-                if (statusCode === Val.FORBIDDEN)
+                if (statusCode === RS.FORBIDDEN)
                     setMsg("Noto'g'ri ma'lumot")
                 else
                     setMsg('Unknown error: ' + statusCode)
@@ -47,17 +48,18 @@ export default function Login() {
     return (
         <div className='container'>
             <div className="col-md-12 card">
-                <form className='form' onSubmit={handleSubmit}>
-                    <h5 style={{textAlign:'center'}} className="mb-2">Kirish</h5>
+                <form className='form form-login' onSubmit={handleSubmit}>
+                    <h5 className="mb-2 form-header">Kirish</h5>
                     <div className='form-group mb-3'>
                         <input
-                            type='phoneNumber'
+                            type='text'
                             className='form-control'
                             id='phoneNumber'
                             value={loginUser.phoneNumber}
                             name='phoneNumber'
                             onChange={handleChange}
-                            placeholder='Telefon raqam'
+                            placeholder='Tel: +998914443359'
+                            pattern="[+][998][0-9]{11}"
                             required
                         />
                     </div>

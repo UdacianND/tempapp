@@ -1,0 +1,26 @@
+.categories {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: auto;
+    overflow-y: scroll;
+    padding-top: 3rem;
+}
+
+.products-link{
+    text-decoration: none;
+    margin-bottom: 2rem;
+}
+
+.category{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    width: 70vw;
+    color: #740089;
+    background-color: rgb(85 255 24);
+    border-radius: 10px;
+    
+}
