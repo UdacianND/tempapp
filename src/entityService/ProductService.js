@@ -62,6 +62,10 @@ class ProductService {
         let productList =  this.getProducts()
         return Object.keys(productList).length !==0
     }
+
+    clearOrderPackage(){
+        localStorage.removeItem(Val.PRODUCTS)
+    }
 }
 
 export default new ProductService();

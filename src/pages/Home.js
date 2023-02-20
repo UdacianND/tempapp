@@ -8,9 +8,6 @@ export default function Home(){
     // if(AuthService.isAuthenticated(user.id))
     //     return (<Navigate to='/login'/>)
     tg.BackButton.hide()
-    tg.BackButton.onClick(()=> {
-        window.history.back()
-    })
     return (
     <div className="menu">
         <Link to="/institutionTypes">
