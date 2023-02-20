@@ -3,10 +3,11 @@ import AuthService from "../service/AuthService";
 import {useTelegram} from "../hooks/useTelegram";
 import { Link } from 'react-router-dom';
 
-export default function Home(){
-    // const {user} = useTelegram()
+export default function Home(){ 
+    const {tg} = useTelegram()
     // if(AuthService.isAuthenticated(user.id))
     //     return (<Navigate to='/login'/>)
+    tg.BackButton.show()
     return (
     <div className="menu">
         <Link to="/institutionTypes">
