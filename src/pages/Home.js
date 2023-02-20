@@ -15,6 +15,7 @@ export default function Home(){
     tg.MainButton.hide()
     tg.BackButton.hide()
     tg.MainButton.onClick(()=>{
+        console.log(history)
         history.push('order/products')
     })
 
