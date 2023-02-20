@@ -14,13 +14,11 @@ export default function Home(){
     tg.BackButton.hide()
     tg.MainButton.onClick(()=>{
         console.log("hone")
-        //history.push('order/products')
+        history.push('order/products')
     })
 
     window.onbeforeunload = function() { 
-            tg.showAlert("Oyna yopildi", ()=>{
-                ProductService.clearOrderPackage()
-            })
+            localStorage.removeItem('products')
         }
     
     return (
