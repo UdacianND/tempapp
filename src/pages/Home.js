@@ -15,9 +15,15 @@ export default function Home(){
         window.location.href = 'order/products'
     })
 
-    window.addEventListener('beoreunload', function(){
-        localStorage.removeItem(Val.PRODUCTS)
-    })
+    window.bind(
+        "beforeunload", 
+        function() { 
+            tg.showAlert("Buyurtma bekor qilindi", ()=>{
+                localStorage.removeItem("products")
+            })
+        }
+    )
+    
     return (
     <div className="menu">
         <Link to="/institutionTypes">
