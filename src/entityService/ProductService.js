@@ -1,4 +1,5 @@
 import * as Val from '../constants/Values'
+const tg = window.Telegram.WebApp;
 
 class ProductService {
     products 
@@ -65,6 +66,20 @@ class ProductService {
 
     clearOrderPackage(){
         localStorage.removeItem(Val.PRODUCTS)
+    }
+
+    setTotalPriceOnMenuButton(){
+        const productsList = this.getOrderedProducts()
+        let totalPrice = productsList.length === 0 ? 0 : productsList.map(x=> x.price * x.count)
+        .reduce((total, current) => total + current)
+        if(totalPrice === 0){
+            tg.MenuButton.hide()
+        }else{
+            tg.MainButton.setParams({
+                text: 'Buyutma : ' + totalPrice
+            })
+            tg.MenuButton.show()
+        }
     }
 }
 

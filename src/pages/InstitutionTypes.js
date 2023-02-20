@@ -10,7 +10,7 @@ export default function InstitutionTypes(){
     tg.BackButton.onClick(()=> {
         let currentPage = window.location.pathname.split('/').pop();
         if(currentPage === 'institutionTypes'){
-            tg.showAlert("Buyurtma bekor qilinsinmi", ()=>{
+            tg.showAlert("Buyurtma bekor qilindi", ()=>{
                 localStorage.removeItem("products")
             })
         }
