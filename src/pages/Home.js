@@ -4,7 +4,6 @@ import {useTelegram} from "../hooks/useTelegram";
 import { Link } from 'react-router-dom';
 import * as Val from '../constants/Values'
 import ProductService from "../entityService/ProductService";
-import createBrowserHistory from "history/createBrowserHistory"
 
 
 export default function Home(){ 
