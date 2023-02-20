@@ -18,10 +18,7 @@ export default function Home(){
         console.log("hone")
         navigate('order/products')
     })
-
-    window.onbeforeunload = function() { 
-            localStorage.removeItem('products')
-        }
+    localStorage.removeItem('products')
     
     return (
     <div className="menu">
