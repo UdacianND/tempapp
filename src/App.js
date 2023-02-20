@@ -10,6 +10,7 @@ import InstitutionTypes from './pages/InstitutionTypes'
 import Categories from './pages/Categories'
 import Products from './pages/Products'
 import OrderPage from './pages/OrderPage';
+import Location from './pages/Location';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path='institutions/:id' element={<Categories />} />
           <Route path='categories/:id' element={<Products />} />
           <Route path='order/products' element={<OrderPage />} />
+          <Route path='order/location' element={<Location />} />
         </Route> 
       </Routes>
     </BrowserRouter>
