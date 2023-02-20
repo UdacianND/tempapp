@@ -15,14 +15,11 @@ export default function Home(){
         window.location.href = 'order/products'
     })
 
-    window.bind(
-        "beforeunload", 
-        function() { 
+    window.onbeforeunload = function() { 
             tg.showAlert("Buyurtma bekor qilindi", ()=>{
                 localStorage.removeItem("products")
             })
         }
-    )
     
     return (
     <div className="menu">
