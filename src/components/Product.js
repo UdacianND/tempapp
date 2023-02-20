@@ -39,7 +39,7 @@ export default function Product({product}) {
                 </div>
             </div>
             <div className="product-order">
-                {item.count == 0 ? 
+                {item.count === 0 ? 
                 <div className="add-button" onClick={handleAddToCart}>
                     <i className="fa-solid fa-plus"></i>
                 </div> : 

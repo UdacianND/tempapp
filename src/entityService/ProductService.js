@@ -37,7 +37,7 @@ class ProductService {
     saveProduct(product){
         if(this.products == null)
             this.products = this.getProducts()
-        if(product.count == 0)
+        if(product.count === 0)
             delete this.products[product.id]
         else{
             if(this.products[product.id] == null){
