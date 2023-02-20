@@ -36,6 +36,7 @@ class ProductService {
     }
 
     saveProduct(product){
+        this.setTotalPriceOnMenuButton()
         if(this.products == null)
             this.products = this.getProducts()
         if(product.count === 0)
