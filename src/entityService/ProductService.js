@@ -57,6 +57,11 @@ class ProductService {
     save(data){
         localStorage.setItem(Val.PRODUCTS, JSON.stringify(data))
     }
+
+    hasAnyOrder(){
+        let productList =  this.getProducts()
+        return Object.keys(productList).length !==0
+    }
 }
 
 export default new ProductService();
