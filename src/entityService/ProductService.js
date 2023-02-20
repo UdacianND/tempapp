@@ -6,8 +6,7 @@ class ProductService {
 
     getOrderedProducts(){
         let orders = []
-        if(this.products == null)
-            this.products = this.getProducts()
+        this.products = this.getProducts()
         for(const prop in this.products){
             console.log(this.products[prop])
             orders.push({
@@ -21,8 +20,6 @@ class ProductService {
     }
 
     getProducts(){
-        if(this.products != null)
-            return this.products
         this.products = JSON.parse(localStorage.getItem(Val.PRODUCTS))
         if(this.products == null)
             this.products = {}
@@ -30,14 +27,12 @@ class ProductService {
     }
 
     getById(id){
-        if(this.products == null)
-            this.products = this.getProducts()
+        this.products = this.getProducts()
         return this.products[id]
     }
 
     saveProduct(product){
-        if(this.products == null)
-            this.products = this.getProducts()
+        this.products = this.getProducts()
         if(product.count === 0)
             delete this.products[product.id]
         else{
