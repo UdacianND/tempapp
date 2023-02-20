@@ -9,7 +9,12 @@ class UserService {
         let localUser = localStorage.getItem(Val.USER)
         if(localUser == null){
             let botUser = this.getBotUser()
-            this.user = new User(botUser.id, botUser.username, false)
+            this.user = {
+                id : botUser.id,
+                name : botUser.username,
+                isAuthenticated : false
+            }
+            
         }else{
             this.user = JSON.parse(localUser)
         }
