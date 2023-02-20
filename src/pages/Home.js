@@ -18,8 +18,17 @@ export default function Home(){
         console.log("hone")
         navigate('order/products')
     })
+
+    tg.BackButton.onClick(()=> {
+        let currentPage = window.location.pathname.split('/').pop();
+        if(currentPage === 'institutionTypes'){
+            tg.showAlert("Buyurtma bekor qilindi", ()=>{
+            })
+        }
+        window.history.back()
+    })
     localStorage.removeItem('products')
-    
+
     return (
     <div className="menu">
         <Link to="/institutionTypes">
