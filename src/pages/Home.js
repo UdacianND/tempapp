@@ -4,16 +4,18 @@ import {useTelegram} from "../hooks/useTelegram";
 import { Link } from 'react-router-dom';
 import * as Val from '../constants/Values'
 import ProductService from "../entityService/ProductService";
+import createBrowserHistory from "history/createBrowserHistory"
 
 
 export default function Home(){ 
+    history
     const {tg} = useTelegram()
     // if(AuthService.isAuthenticated(user.id))
     //     return (<Navigate to='/login'/>)
     tg.MainButton.hide()
     tg.BackButton.hide()
     tg.MainButton.onClick(()=>{
-        window.history.push('order/products')
+        history.push('order/products')
     })
 
     window.onbeforeunload = function() { 
