@@ -2,6 +2,8 @@ import React from "react";
 import AuthService from "../service/AuthService";
 import {useTelegram} from "../hooks/useTelegram";
 import { Link } from 'react-router-dom';
+import * as Val from '../constants/Values'
+
 
 export default function Home(){ 
     const {tg} = useTelegram()
@@ -10,7 +12,11 @@ export default function Home(){
     tg.MainButton.hide()
     tg.BackButton.hide()
     tg.MainButton.onClick(()=>{
-        window.open('order/products')
+        window.location.href = 'order/products'
+    })
+
+    window.onbeforeunload(()=>{
+        localStorage.removeItem(Val.PRODUCTS)
     })
     return (
     <div className="menu">
