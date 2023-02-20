@@ -7,7 +7,10 @@ export default function Home(){
     const {tg} = useTelegram()
     // if(AuthService.isAuthenticated(user.id))
     //     return (<Navigate to='/login'/>)
-    tg.BackButton.show()
+    tg.BackButton.hide()
+    tg.BackButton.onClick(()=> {
+        window.history.back()
+    })
     return (
     <div className="menu">
         <Link to="/institutionTypes">
