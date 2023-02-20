@@ -15,7 +15,7 @@ export default function Home(){
         window.location.href = 'order/products'
     })
 
-    window.onbeforeunload(()=>{
+    window.addEventListener('beoreunload', function(){
         localStorage.removeItem(Val.PRODUCTS)
     })
     return (
