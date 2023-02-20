@@ -66,6 +66,7 @@ class ProductService {
     }
 
     clearOrderPackage(){
+        this.products = {}
         localStorage.removeItem(Val.PRODUCTS)
     }
 

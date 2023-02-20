@@ -3,6 +3,7 @@ import AuthService from "../service/AuthService";
 import {useTelegram} from "../hooks/useTelegram";
 import { Link } from 'react-router-dom';
 import * as Val from '../constants/Values'
+import ProductService from "../entityService/ProductService";
 
 
 export default function Home(){ 
@@ -12,12 +13,12 @@ export default function Home(){
     tg.MainButton.hide()
     tg.BackButton.hide()
     tg.MainButton.onClick(()=>{
-        window.location.href = 'order/products'
+        window.history.push('order/products')
     })
 
     window.onbeforeunload = function() { 
-            tg.showAlert("Buyurtma bekor qilindi", ()=>{
-                localStorage.removeItem("products")
+            tg.showAlert("Oyna yopildi", ()=>{
+                ProductService.clearOrderPackage()
             })
         }
     
