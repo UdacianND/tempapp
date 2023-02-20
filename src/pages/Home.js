@@ -7,7 +7,6 @@ import ProductService from "../entityService/ProductService";
 
 
 export default function Home(){ 
-    history
     const {tg} = useTelegram()
     // if(AuthService.isAuthenticated(user.id))
     //     return (<Navigate to='/login'/>)
