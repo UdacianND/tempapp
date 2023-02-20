@@ -74,12 +74,12 @@ class ProductService {
         let totalPrice = productsList.length === 0 ? 0 : productsList.map(x=> x.price * x.count)
         .reduce((total, current) => total + current)
         if(totalPrice === 0){
-            tg.MenuButton.hide()
+            tg.MainButton.hide()
         }else{
             tg.MainButton.setParams({
                 text: 'Buyutma : ' + totalPrice
             })
-            tg.MenuButton.show()
+            tg.MainButton.show()
         }
     }
 }
