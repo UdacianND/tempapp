@@ -15,7 +15,6 @@ export default function Home(){
     tg.MainButton.hide()
     tg.BackButton.hide()
     tg.MainButton.onClick(()=>{
-        console.log("hone")
         navigate('order/products')
     })
 
