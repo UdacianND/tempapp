@@ -1,0 +1,50 @@
+.order-history{
+    height: 100%;
+    overflow-y: scroll;
+    padding : 0 1rem 
+}
+
+.clean-history-button{
+    margin-left: 50vw;
+    margin-top: 0.5rem;
+}
+
+.order-history-item{
+    background-color: rgb(255, 255, 255);
+    margin : 1rem 0;
+    padding-bottom:  1rem;
+    border-radius: 12px;
+}
+
+.ordered-date{
+    background-color: aquamarine;
+    border-radius: 12px;
+    padding: 0.3rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table, th, td {
+    border: 1px solid rgb(165, 194, 232);
+}
+
+.product-table{
+    width: 98%;
+    margin : 1rem 0.2rem;
+    box-sizing: border-box;
+}
+
+.ordered-product-item{
+    text-align: center;
+    font-size: 12px;
+}
+
+td{
+    padding: 0.3rem 0;
+}
+
+.order-total-price{
+    text-align: center;
+    color: rgb(0, 123, 210);
+}

@@ -12,9 +12,7 @@ export default function Products(){
     })
 
     return (
-        <div className="container">
             <div className="products">
                 {itemComponents}
-            </div>
-        </div>)
+            </div>)
 } 

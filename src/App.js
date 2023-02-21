@@ -11,6 +11,8 @@ import Categories from './pages/Categories'
 import Products from './pages/Products'
 import OrderPage from './pages/OrderPage';
 import Location from './pages/Location';
+import OrderHistoryPage from './pages/OrderHistoryPage';
+import Logout from './pages/Logout';
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path='login' element={<Login/>} />
+        <Route path='logout' element={<Logout/>} />
         <Route path='register' element={<Register/>} />
         <Route path='confirm' element={<Confirm/>} />
         <Route path="/">
@@ -28,6 +31,7 @@ function App() {
           <Route path='categories/:id' element={<Products />} />
           <Route path='order/products' element={<OrderPage />} />
           <Route path='order/location' element={<Location />} />
+          <Route path='order/history' element={<OrderHistoryPage/>} />
         </Route> 
       </Routes>
     </BrowserRouter>

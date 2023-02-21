@@ -33,12 +33,8 @@ export default function Home(){
         <Link to="/institutionTypes">
             <div className="menu-link">Buyurtma berish</div>
         </Link>
-        
-        <Link to="/order-history">
+        <Link to="/order/history">
             <div className="menu-link">Buyurtmalar tarixi</div>
-        </Link>
-        <Link to="/settings">
-            <div className="menu-link">Sozlamalar</div>
         </Link>
         <Link to="/logout">
             <div className="menu-link">Chiqish</div>

@@ -16,6 +16,10 @@ class AuthService {
     confirm(id, number){
         
     }
+
+    logout(id){
+        
+    }
 }
 
 export default new AuthService();

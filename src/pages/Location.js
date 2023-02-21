@@ -3,6 +3,7 @@ import { useGeolocated } from "react-geolocated";
 import LocationController from "../controllers/LocationController";
 import { Link } from 'react-router-dom';
 import {useTelegram} from "../hooks/useTelegram";
+import '../styles/Location.css';
 
 const Location = () => {
 
@@ -18,22 +19,31 @@ const Location = () => {
             userDecisionTimeout: 10000,
         });
 
-    if(isGeolocationAvailable && isGeolocationEnabled){
+    if(isGeolocationAvailable){
         if(coords){
             LocationController.sendLocationInfo(coords.latitude, coords.longitude)
             return (
-                <div> Joylashuvingiz aniqlandi! <br></br> 
-                Buyurtmangiz tez orada yetkaziladi
-                <Link to="/">Bosh sahifaga qaytish</Link></div>
+                <div className="locationPage">
+                    <h4> Joylashuvingiz aniqlandi! <br></br> 
+                    Buyurtmangiz tez orada yetkaziladi<br></br>
+                    <Link to="/">Bosh sahifaga qaytish</Link></h4>
+                </div>
             )
         }else{
             return (
-                <div> Joylashuvingiz aniqlanmoqda</div>
+                <div className="locationPage">
+                    <h4> Joylashuvingiz aniqlanmoqda</h4>
+                </div>
             )
         }
     }else{
         return (
-            <div> Joylashuvni aniqlab bo'lmadi</div>
+            <div className="locationPage">
+                <h4> Joylashuvni aniqlab bo'lmadi
+                <br></br>
+                <Link to="/">Bosh sahifaga qaytish</Link>
+                </h4>
+            </div>
         )
     }
 };
