@@ -17,7 +17,7 @@ export default function OrderPage(){
     })
 
     tg.MainButton.onClick(()=>{
-        navigate('order/location')
+        navigate('/order/location')
     })
     tg.MainButton.setParams({
         text: 'Buyutma berish'
