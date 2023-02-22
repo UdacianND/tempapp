@@ -1,9 +1,7 @@
 import React from "react";
 import AuthService from "../service/AuthService";
 import * as RS from '../constants/ResponseStatus'
-import { Navigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import UserService from '../entityService/UserService'
 import { useNavigate } from "react-router-dom";
 import * as Page from '../constants/Pages'
 
@@ -31,7 +29,6 @@ export default function Login() {
         let status =await AuthService.login(loginUser)
         switch(status){
             case RS.SUCCESS:
-                UserService.setUserAuthenticated()
                 navigate(Page.HOME)
                 break;
             case RS.BAD_CREDENTIALS:

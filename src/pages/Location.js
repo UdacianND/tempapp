@@ -5,7 +5,6 @@ import LocationController from "../controllers/LocationController";
 import { Link } from 'react-router-dom';
 import '../styles/Location.css';
 import L from "../words/L";
-import UserService from "../entityService/UserService";
  
 const Location = () => {
 
@@ -23,7 +22,7 @@ const Location = () => {
 
     if(isGeolocationAvailable){
         if(coords){
-            LocationController.sendLocationInfo(UserService.getUser().id, coords.latitude, coords.longitude)
+            LocationController.sendLocationInfo(coords.latitude, coords.longitude)
             return (
                 <div className="locationPage">
                     <h4> <L w='locatedSuccess'/> <br></br> 

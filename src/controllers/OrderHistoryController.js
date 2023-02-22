@@ -1,20 +1,21 @@
 import * as APIs from '../constants/APIs'
 import axios from "axios";
+import AuthService from '../service/AuthService';
 
 class OrderHistoryController{
-    async getOrderHistoryByUserId(id, lang){
+    async getOrderHistory(lang){
         try {
             const form = new FormData()
             form.append('lang', lang)
-            const response = await axios.post(APIs.ORDER_HISTORY_LIST+'/'+id, form);
+            const response = await axios.post(APIs.ORDER_HISTORY_LIST, form, AuthService.getAuthHeader());
             return response.data;
         } catch (err) {
             return err.response.status;
         }
     }
 
-    cleanHistory(id){
-        axios.delete(APIs.ORDER_HISTORY_CLEAR+'/'+id)
+    cleanHistory(){
+        axios.delete(APIs.ORDER_HISTORY_CLEAR, AuthService.getAuthHeader())
     }
 }
 

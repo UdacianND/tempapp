@@ -4,15 +4,13 @@ import * as Val from '../constants/Values'
 
 class AuthService {
     isAuthenticated(){
-        let localUser = localStorage.getItem(Val.USER)
-        if(localUser == null || !localUser.isAuthenticated)
-            return false;
-        return true;
+        return localStorage.getItem(Val.USER) != null
     }
     
     async login(user) {
         try {
             const response = await axios.post(APIs.LOGIN, user);
+            this.setUserToken(response.data)
             return response.status;
         } catch (err) {
             return err.response.status;
@@ -28,28 +26,37 @@ class AuthService {
         }
     }
 
-    async confirm(id, number){
+    async confirm(number){
         try {
             const form = new FormData()
-            form.append('userId', id)
             form.append('confirmationCode', number)
             const response = await axios.post(APIs.CONFIRM, form);
+            this.setUserToken(response.data)
             return response.status;
         } catch (err) {
             return err.response.status;
         }
     }
 
-    async logout(id){
-        try {
-            const form = new FormData()
-            form.append('userId', id)
-            const response = await axios.post(APIs.LOGOUT, form);
-            return response.status;
-        } catch (err) {
-            return err.response.status;
-        }
+    setUserToken(user){
+        localStorage.setItem(Val.USER, JSON.stringify(user))
     }
+
+    getCurrentUser() {
+        let user = localStorage.getItem("user");
+        if(user == '') return null
+        else return JSON.parse(user);
+      }
+    
+
+    getAuthHeader(){
+        return {
+          headers : {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+this.getCurrentUser().accessToken
+          }
+        }    
+      }
 }
 
 export default new AuthService();

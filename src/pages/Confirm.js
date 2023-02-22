@@ -1,12 +1,10 @@
 import React from "react"; 
 import AuthService from "../service/AuthService";
 import * as RS from '../constants/ResponseStatus'
-import UserService from '../entityService/UserService'
 import { useNavigate } from "react-router-dom";
 import * as Page from '../constants/Pages'
 
 export default function Confirm() {
-    let userId = UserService.getUser().id
     const [smsCode, setSmsCode] = React.useState('');
 
     const navigate = useNavigate();
@@ -20,10 +18,9 @@ export default function Confirm() {
 
     async function handleSubmit(event) {
         event.preventDefault()
-        let status = await AuthService.confirm(userId, smsCode);
+        let status = await AuthService.confirm(smsCode);
         switch(status){
             case RS.SUCCESS:
-                UserService.setUserAuthenticated()
                 navigate(Page.HOME)
                 break;
             case RS.BAD_CREDENTIALS:

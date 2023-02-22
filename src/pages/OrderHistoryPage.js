@@ -7,9 +7,7 @@ import * as Val from '../constants/Values'
 
 const OrderHistoryPage = () => {
     const tg = window.Telegram.WebApp
-    const user = tg.initDataUnsafe?.user
     tg.BackButton.show()
-    let id = user.id  
     let lang = localStorage.getItem(Val.LANG)
 
     const [isHistoryCleaned, setIsHistoryCleaned] = React.useState(false)
@@ -20,7 +18,7 @@ const OrderHistoryPage = () => {
     },[])
 
     if(isHistoryCleaned){
-        OrderHistoryController.cleanHistory(id)
+        OrderHistoryController.cleanHistory()
         return (
             <div className="order-history">
                 <div className="btn btn-primary clean-history-button"
@@ -30,7 +28,7 @@ const OrderHistoryPage = () => {
     }
 
     async function getOrderedProducts(){
-        let orderedProductList = await OrderHistoryController.getOrderHistoryByUserId(id, lang)
+        let orderedProductList = await OrderHistoryController.getOrderHistory(lang)
         setOrderedProducts({...orderedProductList})
     } 
 
@@ -39,7 +37,7 @@ const OrderHistoryPage = () => {
     })
 
     function cleanHistory(){
-        OrderHistoryController.cleanHistory(id)
+        OrderHistoryController.cleanHistory()
         setIsHistoryCleaned(true)
     }
 
