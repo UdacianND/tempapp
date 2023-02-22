@@ -30,7 +30,7 @@ export default new OrderHistoryController()
 //                 id: 1,
 //                 name: 'Coca cola',
 //                 count : 2,
-//                 price: 18000,
+//                 price: 9000,
 //                 institution : 'Oqtepa lavash'
 //             },
 //             {
@@ -40,8 +40,7 @@ export default new OrderHistoryController()
 //                 price: 24000,
 //                 institution : 'Oqtepa lavash'
 //             }
-//         ],
-//         totalPrice : 42000
+//         ]
 //     },
 //     {
 //         id : 2,
@@ -51,7 +50,7 @@ export default new OrderHistoryController()
 //                 id: 3,
 //                 name: 'Coca cola',
 //                 count : 2,
-//                 price: 18000,
+//                 price: 9000,
 //                 institution : 'Oqtepa lavash'
 //             },
 //             {
@@ -61,8 +60,7 @@ export default new OrderHistoryController()
 //                 price: 24000,
 //                 institution : 'Oqtepa lavash'
 //             }
-//         ],
-//         totalPrice : 42000
+//         ]
 //     },
 //     {
 //         id : 3,
@@ -72,7 +70,7 @@ export default new OrderHistoryController()
 //                 id: 5,
 //                 name: 'Coca cola',
 //                 count : 2,
-//                 price: 18000,
+//                 price: 9000,
 //                 institution : 'Oqtepa lavash'
 //             },
 //             {
@@ -82,8 +80,7 @@ export default new OrderHistoryController()
 //                 price: 24000,
 //                 institution : 'Oqtepa lavash'
 //             }
-//         ],
-//         totalPrice : 42000
+//         ]
 //     },
 //     {
 //         id : 4,
@@ -93,7 +90,7 @@ export default new OrderHistoryController()
 //                 id: 7,
 //                 name: 'Coca cola',
 //                 count : 2,
-//                 price: 18000,
+//                 price: 9000,
 //                 institution : 'Oqtepa lavash'
 //             },
 //             {
@@ -103,8 +100,7 @@ export default new OrderHistoryController()
 //                 price: 24000,
 //                 institution : 'Oqtepa lavash'
 //             }
-//         ],
-//         totalPrice : 42000
+//         ]
 //     },
 //     {
 //         id : 5,
@@ -114,7 +110,7 @@ export default new OrderHistoryController()
 //                 id: 9,
 //                 name: 'Coca cola',
 //                 count : 2,
-//                 price: 18000,
+//                 price: 9000,
 //                 institution : 'Oqtepa lavash'
 //             },
 //             {
@@ -124,7 +120,6 @@ export default new OrderHistoryController()
 //                 price: 24000,
 //                 institution : 'Oqtepa lavash'
 //             }
-//         ],
-//         totalPrice : 42000
+//         ]
 //     }
 // ]
