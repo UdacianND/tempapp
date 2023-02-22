@@ -19,14 +19,25 @@
 
 
 /* Home */
-.menu {
+.home-container{
   height: 100vh;
+  overflow: hidden;
+}
+
+.lang-select{
+  width: 20vw;
+  float: right;
+    margin: 5px;
+}
+
+.menu {
+  height: auto;
   width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 20vh 0;
+  padding: 10vh 0;
 }
 
 .menu-link{
@@ -38,6 +49,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 10px;
+  margin : 1rem 0
 }
 
 .menu a{

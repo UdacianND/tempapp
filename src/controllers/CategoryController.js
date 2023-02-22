@@ -1,5 +1,5 @@
 class CategoryController {
-    getCategoriesByInstitutionId(id){
+    getCategoriesByInstitutionId(id, lang){ 
         return [
             {
                 id:1,

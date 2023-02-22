@@ -1,44 +1,68 @@
 import React from "react";
 import AuthService from "../service/AuthService";
 import {useTelegram} from "../hooks/useTelegram";
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import * as Val from '../constants/Values'
-import ProductService from "../entityService/ProductService";
 import { useNavigate } from "react-router-dom";
-
+import * as Page from '../constants/Pages'
+import Words from "../words/Words";
+import L from "../words/L";
+ 
 
 export default function Home(){ 
+    let currentLang = localStorage.getItem(Val.LANG)
+    if(currentLang == null){
+        currentLang = 'uz'
+        localStorage.setItem(Val.LANG, currentLang)
+    }
+    let [lang, setLang] = React.useState(currentLang)
+
+    let data = Words.data
+
     const {tg} = useTelegram()
     const navigate = useNavigate();
-    // if(AuthService.isAuthenticated(user.id))
-    //     return (<Navigate to='/login'/>)
+    if(!AuthService.isAuthenticated())
+        return (<Navigate to={Page.LOGIN}/>)
+
     tg.MainButton.hide()
     tg.BackButton.hide()
     tg.MainButton.onClick(()=>{
-        navigate('order/products')
+        navigate(Page.ORDER)
     })
 
     tg.BackButton.onClick(()=> {
         let currentPage = window.location.pathname.split('/').pop();
         if(currentPage === 'institutionTypes'){
-            tg.showAlert("Buyurtma bekor qilindi", ()=>{
-            })
+            tg.showAlert(data['orderCancelled'][currentLang])
         }
         window.history.back()
     })
-    localStorage.removeItem('products')
+    
+    localStorage.removeItem(Val.PRODUCTS)
+
+    function changeLang(e){
+        localStorage.setItem(Val.LANG, e.target.value)
+        setLang(e.target.value)
+    }
 
     return (
-    <div className="menu">
-        <Link to="/institutionTypes">
-            <div className="menu-link">Buyurtma berish</div>
-        </Link>
-        <Link to="/order/history">
-            <div className="menu-link">Buyurtmalar tarixi</div>
-        </Link>
-        <Link to="/logout">
-            <div className="menu-link">Chiqish</div>
-        </Link>
-        
-    </div>)
+        <div className="home-container">
+            <label htmlFor="state"></label>
+            <select id="state" className="form-control lang-select" onChange={(e)=>changeLang(e)} value = {lang}>
+                <option value="ru">Ru</option>
+                <option value="uz">Uz</option>
+            </select>
+            <div className="menu">
+                <Link to={Page.INSTITUTION_TYPES}>
+                    <div className="menu-link"><L w='book'/></div>
+                </Link>
+                <Link to={Page.ORDER_HISTORY}>
+                    <div className="menu-link"><L w='orderHistory'/></div>
+                </Link>
+                <Link to={Page.LOGOUT}>
+                    <div className="menu-link"><L w='logout'/></div>
+                </Link>
+            </div>
+        </div>
+    )
 }

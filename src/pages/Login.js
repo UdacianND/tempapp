@@ -4,8 +4,12 @@ import * as RS from '../constants/ResponseStatus'
 import { Navigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import UserService from '../entityService/UserService'
+import { useNavigate } from "react-router-dom";
+import * as Page from '../constants/Pages'
 
 export default function Login() {
+
+    const navigate = useNavigate();
 
     const [loginUser, setLoginUser] = React.useState({
         phoneNumber: '+998',
@@ -13,10 +17,6 @@ export default function Login() {
     });
 
     const [msg, setMsg] = React.useState('')
-    const [isAutheticated, setAuthenticated] = React.useState(false)
-    if(isAutheticated){
-        return (<Navigate to='/'  />)
-    }
 
     function handleChange(event) {
         const { name, value } = event.target
@@ -32,7 +32,7 @@ export default function Login() {
             response => {
                 if(response.status === RS.SUCCESS){
                     UserService.setUserAuthenticated()
-                    setAuthenticated(true)
+                    navigate(Page.HOME)
                 }               
             },
             error => {
@@ -85,7 +85,7 @@ export default function Login() {
                         {msg && <h6 style={{color:"red"}}>{msg}</h6>}
                     </div>  
                     <div className='form-group'>
-                       Hisobingiz yo'qmi? <Link to="/register">Ro'yhatdan o'ting!</Link>
+                       Hisobingiz yo'qmi? <Link to={Page.REGISTER}>Ro'yhatdan o'ting!</Link>
                     </div>        
                 </form>
             </div>

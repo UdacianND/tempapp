@@ -1,5 +1,6 @@
 import React from "react";
 import OrderedProductItem from "./OrderedProductItem";
+import L from "../words/L";
 
 export default function OrderHistory({order}) {
 
@@ -10,7 +11,7 @@ export default function OrderHistory({order}) {
         <div className="order-history-item">
             <div className="ordered-date">{order.date}</div>
             <table className="product-table">{orderedProducts}</table>
-            <div className="order-total-price">Umumiy : {order.totalPrice} so'm</div>
+            <div className="order-total-price"><L w='total'/> : {order.totalPrice} so'm</div>
         </div>
     )
     

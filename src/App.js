@@ -13,17 +13,18 @@ import OrderPage from './pages/OrderPage';
 import Location from './pages/Location';
 import OrderHistoryPage from './pages/OrderHistoryPage';
 import Logout from './pages/Logout';
+import * as Page from './constants/Pages'
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
       <Routes>
-        <Route path='login' element={<Login/>} />
-        <Route path='logout' element={<Logout/>} />
-        <Route path='register' element={<Register/>} />
-        <Route path='confirm' element={<Confirm/>} />
-        <Route path="/">
+        <Route path={Page.LOGIN} element={<Login/>} />
+        <Route path={Page.LOGOUT} element={<Logout/>} />
+        <Route path={Page.REGISTER} element={<Register/>} />
+        <Route path={Page.CONFIRM} element={<Confirm/>} />
+        <Route path={Page.HOME}>
           <Route index element={<Home />} />
           <Route path='institutionTypes'element={<InstitutionTypes />} />
           <Route path='institutionTypes/:id' element={<Institutions />} />

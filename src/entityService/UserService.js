@@ -1,13 +1,10 @@
 import * as Val from '../constants/Values'
-import User from '../models/User'
 
 class UserService {
     user
     getUser(){
-        if(this.user != null)
-            return this.user
-        let localUser = localStorage.getItem(Val.USER)
-        if(localUser == null){
+        this.user = localStorage.getItem(Val.USER)
+        if(this.user == null){
             let botUser = this.getBotUser()
             this.user = {
                 id : botUser.id,
@@ -16,15 +13,15 @@ class UserService {
             }
             
         }else{
-            this.user = JSON.parse(localUser)
+            this.user = JSON.parse(this.user)
         }
         return this.user
     }
 
     setUserAuthenticated (){
-        let user = this.getUser()
-        user.isAuthenticated = true
-        localStorage.setItem(Val.USER, JSON.stringify(user))
+        this.user = this.getUser()
+        this.user.isAuthenticated = true
+        localStorage.setItem(Val.USER, JSON.stringify(this.user))
     }
 
     getBotUser(){

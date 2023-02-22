@@ -1,5 +1,5 @@
 class ProductController {
-    getProductsByCategoryId(){
+    getProductsByCategoryId(id, lang){
         let url = 'https://th.bing.com/th/id/OIP.dNCYKENMQT0e6qVY3uzTzQHaE7?pid=ImgDet&rs=1'
         return [
             {

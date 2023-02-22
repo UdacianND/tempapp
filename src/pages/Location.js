@@ -4,7 +4,8 @@ import LocationController from "../controllers/LocationController";
 import { Link } from 'react-router-dom';
 import {useTelegram} from "../hooks/useTelegram";
 import '../styles/Location.css';
-
+import L from "../words/L";
+ 
 const Location = () => {
 
     const {tg} = useTelegram()
@@ -24,24 +25,24 @@ const Location = () => {
             LocationController.sendLocationInfo(coords.latitude, coords.longitude)
             return (
                 <div className="locationPage">
-                    <h4> Joylashuvingiz aniqlandi! <br></br> 
-                    Buyurtmangiz tez orada yetkaziladi<br></br>
-                    <Link to="/">Bosh sahifaga qaytish</Link></h4>
+                    <h4> <L w='locatedSuccess'/> <br></br> 
+                    <L w='soonDeliver'/><br></br>
+                    <Link to="/"><L w='backHome'/></Link></h4>
                 </div>
             )
         }else{
             return (
                 <div className="locationPage">
-                    <h4> Joylashuvingiz aniqlanmoqda</h4>
+                    <h4> <L w='locating'/></h4>
                 </div>
             )
         }
     }else{
         return (
             <div className="locationPage">
-                <h4> Joylashuvni aniqlab bo'lmadi
+                <h4> <L w='notLocated'/>
                 <br></br>
-                <Link to="/">Bosh sahifaga qaytish</Link>
+                <Link to="/"><L w='backHome'/></Link>
                 </h4>
             </div>
         )

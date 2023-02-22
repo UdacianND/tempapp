@@ -1,22 +1,19 @@
 import React from "react";
 import AuthService from "../service/AuthService";
 import * as RS from '../constants/ResponseStatus'
-import { Navigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
+import { useNavigate } from "react-router-dom";
+import * as Page from '../constants/Pages'
 
 export default function Register() {
+    const navigate = useNavigate();
 
     const [user, setUser] = React.useState({
         phoneNumber: '+998',
         password: ''
     });
-    localStorage.setItem("temp","temp")
 
     const [msg, setMsg] = React.useState('')
-    const [isRegistered, setRegistered] = React.useState(false)
-    if(isRegistered){
-        return (<Navigate to='/confirm'  />)
-    }
 
     function handleChange(event) {
         const { name, value } = event.target
@@ -32,7 +29,7 @@ export default function Register() {
             response => {
                 if(response.status === RS.SUCCESS){
                     setMsg('Ok')
-                    setRegistered(true)
+                    navigate(Page.CONFIRM)
                 }               
             },
             error => {
@@ -84,7 +81,7 @@ export default function Register() {
                         {msg && <h6 style={{color:"red"}}>{msg}</h6>}
                     </div>      
                     <div className='form-group'>
-                       <Link to="/login">Kirish</Link>
+                       <Link to={Page.LOGIN}>Kirish</Link>
                     </div>     
                 </form>
             </div>

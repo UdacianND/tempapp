@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import * as Page from '../constants/Pages'
 
 export default function Institution({item}) {
 
@@ -7,7 +8,7 @@ export default function Institution({item}) {
         backgroundImage: "url("+item.imageUrl+")"
     }
 
-    let link = '/institutions/'+item.id
+    let link = Page.INSTITUTIONS+'/'+item.id
     return (
             <Link className="category-link" to={link}>
                 <div className="institution">

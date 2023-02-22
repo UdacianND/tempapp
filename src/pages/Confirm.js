@@ -1,18 +1,17 @@
-import React from "react";
+import React from "react"; 
 import AuthService from "../service/AuthService";
 import * as RS from '../constants/ResponseStatus'
-import { Navigate } from "react-router-dom";
 import UserService from '../entityService/UserService'
+import { useNavigate } from "react-router-dom";
+import * as Page from '../constants/Pages'
 
 export default function Confirm() {
     let userId = UserService.getUser().id
     const [smsCode, setSmsCode] = React.useState('');
 
+    const navigate = useNavigate();
+
     const [msg, setMsg] = React.useState('')
-    const [isAutheticated, setAuthenticated] = React.useState(false)
-    if(isAutheticated){
-        return (<Navigate to='/'  />)
-    }
 
     function handleChange(event) {
         const { value } = event.target
@@ -25,7 +24,7 @@ export default function Confirm() {
             response => {
                 if(response.status === RS.SUCCESS){
                     UserService.setUserAuthenticated()
-                    setAuthenticated(true)
+                    navigate(Page.HOME)
                 }               
             },
             error => {

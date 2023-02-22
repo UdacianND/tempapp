@@ -1,5 +1,5 @@
 class OrderHistoryController{
-    getOrderHistoryByUserId(id){
+    getOrderHistoryByUserId(id, lang){
         return [
             {
                 id : 1,

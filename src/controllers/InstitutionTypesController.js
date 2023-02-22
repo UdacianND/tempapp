@@ -1,5 +1,5 @@
 class InstitutionTypesController {
-    getAllInstitutionTypes(){
+    getAllInstitutionTypes(lang){
         return [
             {
                 id:1,
