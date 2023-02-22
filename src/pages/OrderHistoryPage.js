@@ -1,18 +1,24 @@
-import React, {useState} from "react";
-import {useTelegram} from "../hooks/useTelegram";
-import '../styles/OrderHistory.css';
+import React from "react";
+import '../styles/OrderHistory.css'; 
 import OrderHistoryController from "../controllers/OrderHistoryController";
 import OrderHistory from "../components/OrderHistory";
 import L from "../words/L";
 import * as Val from '../constants/Values'
 
 const OrderHistoryPage = () => {
-    const {user, tg} = useTelegram()
+    const tg = window.Telegram.WebApp
+    const user = tg.initDataUnsafe?.user
     tg.BackButton.show()
     let id = user.id  
     let lang = localStorage.getItem(Val.LANG)
 
-    const [isHistoryCleaned, setIsHistoryCleaned] = useState(false)
+    const [isHistoryCleaned, setIsHistoryCleaned] = React.useState(false)
+    const [orderedProducts, setOrderedProducts] = React.useState([])
+
+    React.useEffect(()=>{
+        getOrderedProducts()
+    },[])
+
     if(isHistoryCleaned){
         OrderHistoryController.cleanHistory(id)
         return (
@@ -22,7 +28,12 @@ const OrderHistoryPage = () => {
             </div>
         )
     }
-    let orderedProducts = OrderHistoryController.getOrderHistoryByUserId(id, lang)
+
+    async function getOrderedProducts(){
+        let orderedProductList = await OrderHistoryController.getOrderHistoryByUserId(id, lang)
+        setOrderedProducts({...orderedProductList})
+    } 
+
     let itemComponents = orderedProducts.map(item => {
         return <OrderHistory order = {item} key={item.id}/>
     })

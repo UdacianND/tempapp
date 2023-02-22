@@ -26,23 +26,20 @@ export default function Login() {
         }))
     }
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault()
-        AuthService.login(loginUser).then(
-            response => {
-                if(response.status === RS.SUCCESS){
-                    UserService.setUserAuthenticated()
-                    navigate(Page.HOME)
-                }               
-            },
-            error => {
-                const statusCode = error.response.status
-                if (statusCode === RS.FORBIDDEN)
-                    setMsg("Noto'g'ri ma'lumot")
-                else
-                    setMsg('Unknown error: ' + statusCode)
-            }
-        );
+        let status =await AuthService.login(loginUser)
+        switch(status){
+            case RS.SUCCESS:
+                UserService.setUserAuthenticated()
+                navigate(Page.HOME)
+                break;
+            case RS.BAD_CREDENTIALS:
+                setMsg("Noto'g'ri ma'lumot")
+                break;
+            default :
+                setMsg('Unknown error: ' + status)
+        }
     }
 
     return (

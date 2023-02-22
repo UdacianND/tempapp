@@ -84,6 +84,19 @@ class ProductService {
             tg.MainButton.show()
         }
     }
+
+    getDeliveryProducts(){
+        let orders = []
+        this.products = this.getProducts()
+        for(const prop in this.products){
+            console.log(this.products[prop])
+            orders.push({
+                id : this.products[prop].id,
+                count : this.products[prop].count,
+            })
+        }
+        return orders;
+    }
 }
 
 export default new ProductService();

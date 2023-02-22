@@ -18,23 +18,20 @@ export default function Confirm() {
         setSmsCode(value)
     }
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault()
-        AuthService.confirm(userId, smsCode).then(
-            response => {
-                if(response.status === RS.SUCCESS){
-                    UserService.setUserAuthenticated()
-                    navigate(Page.HOME)
-                }               
-            },
-            error => {
-                const statusCode = error.response.status
-                if (statusCode === RS.BAD_REQUEST)
-                    setMsg("Noto'g'ri ma'lumot")
-                else
-                    setMsg('Unknown error: ' + statusCode)
-            }
-        );
+        let status = await AuthService.confirm(userId, smsCode);
+        switch(status){
+            case RS.SUCCESS:
+                UserService.setUserAuthenticated()
+                navigate(Page.HOME)
+                break;
+            case RS.BAD_CREDENTIALS:
+                setMsg("Noto'g'ri ma'lumot")
+                break;
+            default :
+                setMsg('Unknown error: ' + status)
+        }
     }
 
     return (
@@ -52,6 +49,8 @@ export default function Confirm() {
                             onChange={handleChange}
                             placeholder='Tasdiqlash kodi'
                             required
+                            minlength="5" 
+                            maxlength="5"
                         />
                     </div>
 

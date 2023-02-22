@@ -1,10 +1,11 @@
 import React from "react";
+import {useTelegram} from "../hooks/useTelegram";
 import { useGeolocated } from "react-geolocated";
 import LocationController from "../controllers/LocationController";
 import { Link } from 'react-router-dom';
-import {useTelegram} from "../hooks/useTelegram";
 import '../styles/Location.css';
 import L from "../words/L";
+import UserService from "../entityService/UserService";
  
 const Location = () => {
 
@@ -12,7 +13,7 @@ const Location = () => {
     tg.MainButton.hide()
     tg.BackButton.hide()
     
-    const { coords, isGeolocationAvailable, isGeolocationEnabled } =
+    const { coords, isGeolocationAvailable } =
         useGeolocated({
             positionOptions: {
                 enableHighAccuracy: true,
@@ -22,7 +23,7 @@ const Location = () => {
 
     if(isGeolocationAvailable){
         if(coords){
-            LocationController.sendLocationInfo(coords.latitude, coords.longitude)
+            LocationController.sendLocationInfo(UserService.getUser().id, coords.latitude, coords.longitude)
             return (
                 <div className="locationPage">
                     <h4> <L w='locatedSuccess'/> <br></br> 

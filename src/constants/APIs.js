@@ -1,21 +1,31 @@
-export const BASE = "/api/v1/shop/"
-export const BASE_BOT = ""
+//* - for bot only
+
+export const HOST = ""
+export const BASE = "/api/v1/shop"
+
 
 // Auth
-export const CHECK_USER_AUTH = "/api/bot/users/isAuthenticated/user/{1}" //{chatId}
-export const LOGIN = "/api/bot/users/login" //body
-export const REGISTER = "/api/bot/users/register" //body
-export const CONFIRM = "/api/bot/users/register" //query
+export const LOGIN = HOST + BASE +  "/auth/login" //*POST body : phoneNumber, password
+export const REGISTER = HOST + BASE + "/auth/register" //*POST body : phoneNumber, password
+export const CONFIRM = HOST + BASE + "/auth/confirm" //*POST query : userId, confirmationCode
+export const LOGOUT = HOST + BASE + "/auth/logout" //*POST query: userId
 
 // Institutions
-export const INSTITUTIONS_LIST = "/institutions"
+export const INSTITUTION_TYPE_LIST = HOST + BASE + "/institutionTypes" //GET
+
+// Institutions
+export const INSTITUTION_LIST = HOST + BASE + "/institutions/type" //GET path : typeId
 
 //Categories
-export const CATEGORIES_LIST = "/institutions/" //id
+export const CATEGORY_LIST = HOST + BASE + "/categories/institution" //GET path : insId
 
 //Products
-export const PRODUCT_LIST = "/category/id/products"
+export const PRODUCT_LIST = HOST + BASE + "/products/category" //GET path : catId 
 
 //Order
-export const ORDER_POST = "/order" //body
+export const ORDER_POST = HOST + BASE + "/order/user" //*POST path : body : order
+
+//Order hitory
+export const ORDER_HISTORY_LIST = HOST + BASE + "/order/history/user" //*GET path: userId
+export const ORDER_HISTORY_CLEAR = HOST + BASE + "/order/history/user" //*DELETE path: userId
 

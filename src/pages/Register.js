@@ -23,23 +23,19 @@ export default function Register() {
         }))
     }
 
-    function handleSubmit(event) {
-        event.preventDefault()
-        AuthService.register(user).then(
-            response => {
-                if(response.status === RS.SUCCESS){
-                    setMsg('Ok')
-                    navigate(Page.CONFIRM)
-                }               
-            },
-            error => {
-                const statusCode = error.response.status
-                if (statusCode === RS.PHONE_NUMBER_EXISTS)
-                    setMsg('Raqam oldindan mavjud')
-                else
-                    setMsg('Error')
-            }
-        );
+    async function handleSubmit(event) {
+        event.preventDefault() 
+        let status = await AuthService.register(user);
+        switch(status){
+            case RS.SUCCESS:
+                navigate(Page.CONFIRM)
+                break;
+            case RS.PHONE_NUMBER_EXISTS:
+                setMsg('Raqam oldindan mavjud')
+                break;
+            default :
+                setMsg('Unknown error: ' + status)
+        }
     }
 
     return (

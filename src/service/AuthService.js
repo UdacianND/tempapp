@@ -1,5 +1,5 @@
 import axios from "axios";
-import {BASE_BOT} from "../constants/APIs";
+import * as APIs from "../constants/APIs";
 import * as Val from '../constants/Values'
 
 class AuthService {
@@ -10,20 +10,45 @@ class AuthService {
         return true;
     }
     
-    login(user) {
-        return axios.post(BASE_BOT + "api/auth/login", user)
+    async login(user) {
+        try {
+            const response = await axios.post(APIs.LOGIN, user);
+            return response.status;
+        } catch (err) {
+            return err.response.status;
+        }
     }
     
-    register(user) {
-        return axios.post(BASE_BOT + "api/auth/register",user);
+    async register(user) {
+        try {
+            const response = await axios.post(APIs.REGISTER, user);
+            return response.status;
+        } catch (err) {
+            return err.response.status;
+        }
     }
 
-    confirm(id, number){
-        
+    async confirm(id, number){
+        try {
+            const form = new FormData()
+            form.append('userId', id)
+            form.append('confirmationCode', number)
+            const response = await axios.post(APIs.CONFIRM, form);
+            return response.status;
+        } catch (err) {
+            return err.response.status;
+        }
     }
 
-    logout(id){
-        
+    async logout(id){
+        try {
+            const form = new FormData()
+            form.append('userId', id)
+            const response = await axios.post(APIs.LOGOUT, form);
+            return response.status;
+        } catch (err) {
+            return err.response.status;
+        }
     }
 }
 
