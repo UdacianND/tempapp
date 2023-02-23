@@ -14,12 +14,14 @@ export default function Home(){
     function backButton() {
         let currentPage = window.location.pathname;
         if(currentPage === Page.INSTITUTION_TYPES){
-            console.log("here")
+            tg.showAlert(data['orderCancelled'][currentLang])
+            window.history.back()
         }
-        if(currentPage === Page.ORDER_HISTORY){
-            console.log("here")
-        }
-        window.history.back()
+        else if(currentPage === Page.ORDER_HISTORY){
+            window.location.href = '/'
+        }else{
+            window.history.back()
+        }    
     }
 
     function orderButton(){
