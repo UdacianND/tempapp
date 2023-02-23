@@ -6,15 +6,12 @@ import { Link } from 'react-router-dom';
 import '../styles/Location.css';
 import L from "../words/L";
 import { useNavigate } from "react-router-dom";
-import * as Page from '../constants/Pages'
  
 const Location = () => {
     const navigate = useNavigate();
     const {tg} = useTelegram()
     tg.MainButton.hide()
-    tg.BackButton.onClick(()=>{
-        navigate(Page.HOME)
-    })
+    tg.BackButton.hide()
     
     const { coords, isGeolocationAvailable } =
         useGeolocated({
