@@ -8,6 +8,7 @@ import L from "../words/L";
 import { useNavigate } from "react-router-dom";
  
 const Location = () => {
+    console.log(window.location.pathname)
     const navigate = useNavigate();
     const {tg} = useTelegram()
     tg.MainButton.hide()
