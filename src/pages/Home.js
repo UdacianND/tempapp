@@ -13,28 +13,17 @@ export default function Home(){
     const navigate = useNavigate();
     function backButton() {
         let currentPage = window.location.pathname;
+        let msg = localStorage.getItem('lang') === 'uz'?'Buyurtma bekor qilindi':"Заказ отменен"
         if(currentPage === Page.INSTITUTION_TYPES){
-            tg.showAlert('Buyurtma bekor qilindi')
+            tg.showAlert(msg)
             window.history.back()
         }
         else if(currentPage === Page.ORDER_HISTORY){
             window.location.href = '/'
         }else{
             window.history.back()
-        }    
-    }
-
-    function backButtonRu() {
-        let currentPage = window.location.pathname;
-        if(currentPage === Page.INSTITUTION_TYPES){
-            tg.showAlert('Заказ отменен')
-            window.history.back()
         }
-        else if(currentPage === Page.ORDER_HISTORY){
-            window.location.href = '/'
-        }else{
-            window.history.back()
-        }    
+        
     }
 
     function orderButton(){
@@ -59,16 +48,8 @@ export default function Home(){
 
     tg.MainButton.offClick(orderButton)
     tg.MainButton.onClick(orderButton)
-    if(currentLang === 'uz'){
-        tg.BackButton.offClick(backButtonRu)
-        tg.BackButton.offClick(backButton)
-        tg.BackButton.onClick(backButton)
-    }else{
-        tg.BackButton.offClick(backButtonRu)
-        tg.BackButton.offClick(backButton)
-        tg.BackButton.onClick(backButtonRu)
-    }
-
+    tg.BackButton.offClick(backButton)
+    tg.BackButton.onClick(backButton)
 
     console.log(window.location.pathname)
     tg.BackButton.onClick()
