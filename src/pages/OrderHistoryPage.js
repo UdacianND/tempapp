@@ -8,8 +8,14 @@ import * as Val from '../constants/Values'
 
 const OrderHistoryPage = () => {
 
+    function toHome(){
+        window.location.href = '/'
+    }
+
     const tg = window.Telegram.WebApp
     tg.BackButton.show()
+    tg.BackButton.offClick(toHome)
+    tg.BackButton.onClick(toHome)
     
     let lang = localStorage.getItem(Val.LANG)
 

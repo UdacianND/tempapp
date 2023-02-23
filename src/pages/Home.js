@@ -12,8 +12,8 @@ import L from "../words/L";
 export default function Home(){ 
     const navigate = useNavigate();
     function backButton() {
-        let currentPage = window.location.pathname.split('/').pop();
-        if(currentPage === 'institutionTypes'){
+        let currentPage = window.location.pathname;
+        if(currentPage === '/institutionTypes'){
             tg.showAlert(data['orderCancelled'][currentLang])
         }
         window.history.back()
