@@ -4,17 +4,15 @@ import OrderHistoryController from "../controllers/OrderHistoryController";
 import OrderHistory from "../components/OrderHistory";
 import L from "../words/L";
 import * as Val from '../constants/Values'
-import { useNavigate } from "react-router-dom";
-import * as Page from '../constants/Pages'
+
 
 const OrderHistoryPage = () => {
-    console.log(window.location.pathname)
-    const navigate = useNavigate();
+
     const tg = window.Telegram.WebApp
     tg.BackButton.show()
+    
     let lang = localStorage.getItem(Val.LANG)
 
-    const [isHistoryCleaned, setIsHistoryCleaned] = React.useState(false)
     const [orderedProducts, setOrderedProducts] = React.useState({
         list:[]
     })
@@ -22,16 +20,6 @@ const OrderHistoryPage = () => {
     React.useEffect(()=>{
         getOrderedProducts()
     },[])
-
-    if(isHistoryCleaned){
-        OrderHistoryController.cleanHistory()
-        return (
-            <div className="order-history">
-                <div className="btn btn-primary clean-history-button"
-                onClick={cleanHistory}><L w='clean'/></div>
-            </div>
-        )
-    }
 
     async function getOrderedProducts(){
         let orderedProductList = await OrderHistoryController.getOrderHistory(lang)
@@ -44,7 +32,7 @@ const OrderHistoryPage = () => {
 
     function cleanHistory(){
         OrderHistoryController.cleanHistory()
-        setIsHistoryCleaned(true)
+        setOrderedProducts(pre => ({...pre, list:[]}))
     }
 
     return (
