@@ -14,7 +14,20 @@ export default function Home(){
     function backButton() {
         let currentPage = window.location.pathname;
         if(currentPage === Page.INSTITUTION_TYPES){
-            tg.showAlert(data['orderCancelled'][currentLang])
+            tg.showAlert('Buyurtma bekor qilindi')
+            window.history.back()
+        }
+        else if(currentPage === Page.ORDER_HISTORY){
+            window.location.href = '/'
+        }else{
+            window.history.back()
+        }    
+    }
+
+    function backButtonRu() {
+        let currentPage = window.location.pathname;
+        if(currentPage === Page.INSTITUTION_TYPES){
+            tg.showAlert('Заказ отменен')
             window.history.back()
         }
         else if(currentPage === Page.ORDER_HISTORY){
@@ -46,8 +59,16 @@ export default function Home(){
 
     tg.MainButton.offClick(orderButton)
     tg.MainButton.onClick(orderButton)
-    tg.BackButton.offClick(backButton)
-    tg.BackButton.onClick(backButton)
+    if(currentLang === 'uz'){
+        tg.BackButton.offClick(backButtonRu)
+        tg.BackButton.offClick(backButton)
+        tg.BackButton.onClick(backButton)
+    }else{
+        tg.BackButton.offClick(backButtonRu)
+        tg.BackButton.offClick(backButton)
+        tg.BackButton.onClick(backButtonRu)
+    }
+
 
     console.log(window.location.pathname)
     tg.BackButton.onClick()
