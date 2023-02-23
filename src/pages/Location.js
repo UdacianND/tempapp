@@ -19,7 +19,7 @@ const Location = () => {
             positionOptions: {
                 enableHighAccuracy: true,
             },
-            userDecisionTimeout: 10000,
+            userDecisionTimeout: 6000,
         });
 
     if(isGeolocationAvailable){

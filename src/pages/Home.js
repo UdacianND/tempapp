@@ -10,6 +10,13 @@ import L from "../words/L";
  
 
 export default function Home(){ 
+    function backButton() {
+        let currentPage = window.location.pathname.split('/').pop();
+        if(currentPage === 'institutionTypes'){
+            tg.showAlert(data['orderCancelled'][currentLang])
+        }
+        window.history.back()
+    }
     let currentLang = localStorage.getItem(Val.LANG)
     if(currentLang == null){
         currentLang = 'uz'
@@ -26,18 +33,11 @@ export default function Home(){
 
     tg.MainButton.hide()
     tg.BackButton.hide()
-    tg.MainButton.onClick(()=>{
-        navigate(Page.ORDER)
-    })
+    tg.offClick(backButton)
+    tg.MainButton.onClick(backButton)
 
     console.log(window.location.pathname)
-    tg.BackButton.onClick(()=> {
-        let currentPage = window.location.pathname.split('/').pop();
-        if(currentPage === 'institutionTypes'){
-            tg.showAlert(data['orderCancelled'][currentLang])
-        }
-        window.history.back()
-    })
+    tg.BackButton.onClick()
     
     localStorage.removeItem(Val.PRODUCTS)
 

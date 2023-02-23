@@ -12,9 +12,6 @@ const OrderHistoryPage = () => {
     const navigate = useNavigate();
     const tg = window.Telegram.WebApp
     tg.BackButton.show()
-    tg.BackButton.onClick(()=>{
-        navigate(Page.HOME)
-    })
     let lang = localStorage.getItem(Val.LANG)
 
     const [isHistoryCleaned, setIsHistoryCleaned] = React.useState(false)
