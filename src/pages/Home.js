@@ -33,7 +33,7 @@ export default function Home(){
 
     tg.MainButton.hide()
     tg.BackButton.hide()
-    tg.offClick(backButton)
+    tg.BackButton.offClick(backButton)
     tg.MainButton.onClick(backButton)
 
     console.log(window.location.pathname)
