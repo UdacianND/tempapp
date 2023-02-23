@@ -13,8 +13,11 @@ export default function Home(){
     const navigate = useNavigate();
     function backButton() {
         let currentPage = window.location.pathname;
+        if(currentPage === Page.INSTITUTION_TYPES){
+            console.log("here")
+        }
         if(currentPage === Page.ORDER_HISTORY){
-            tg.showAlert(data['orderCancelled'][currentLang])
+            console.log("here")
         }
         window.history.back()
     }

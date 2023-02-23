@@ -12,9 +12,7 @@ export default function InstitutionTypes(){
         list : []
     })
     tg.BackButton.show()
-    window.onbeforeunload = function(){
-        return 'Buyurtma bekor qilinsimi?';
-    };
+
     useEffect(()=>{
         async function getInsTypes(){
             let insTypes = await InstitutionTypesController.getAllInstitutionTypes(lang)
