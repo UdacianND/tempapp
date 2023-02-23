@@ -13,6 +13,10 @@ export default function OrderPage(){
     const {tg} = useTelegram()
     const navigate = useNavigate();
 
+    function locationButton(){
+        navigate(Page.GEOLOCATION) 
+    }
+
     let lang = localStorage.getItem(Val.LANG)
     let data = Words.data
 
@@ -23,9 +27,9 @@ export default function OrderPage(){
         return <Order order= {item} key={item.id}/>
     }) 
 
-    tg.MainButton.onClick(()=>{
-        navigate(Page.GEOLOCATION) 
-    })
+    tg.MainButton.offClick(locationButton)
+    tg.MainButton.onClick(locationButton)
+
     tg.MainButton.setParams({
         text: data['book'][lang]
     })

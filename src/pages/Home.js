@@ -10,6 +10,7 @@ import L from "../words/L";
  
 
 export default function Home(){ 
+    const navigate = useNavigate();
     function backButton() {
         let currentPage = window.location.pathname.split('/').pop();
         if(currentPage === 'institutionTypes'){
@@ -17,6 +18,11 @@ export default function Home(){
         }
         window.history.back()
     }
+
+    function orderButton(){
+        navigate(Page.ORDER)
+    }
+
     let currentLang = localStorage.getItem(Val.LANG)
     if(currentLang == null){
         currentLang = 'uz'
@@ -27,12 +33,14 @@ export default function Home(){
     let data = Words.data
 
     const {tg} = useTelegram()
-    const navigate = useNavigate();
     if(!AuthService.isAuthenticated())
         return (<Navigate to={Page.LOGIN}/>)
 
     tg.MainButton.hide()
     tg.BackButton.hide()
+
+    tg.MainButton.offClick(orderButton)
+    tg.MainButton.onClick(orderButton)
     tg.BackButton.offClick(backButton)
     tg.BackButton.onClick(backButton)
 
