@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import * as Page from '../constants/Pages'
 
 const OrderHistoryPage = () => {
+    console.log(window.location.pathname)
     const navigate = useNavigate();
     const tg = window.Telegram.WebApp
     tg.BackButton.show()

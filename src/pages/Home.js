@@ -30,6 +30,7 @@ export default function Home(){
         navigate(Page.ORDER)
     })
 
+    console.log(window.location.pathname)
     tg.BackButton.onClick(()=> {
         let currentPage = window.location.pathname.split('/').pop();
         if(currentPage === 'institutionTypes'){
