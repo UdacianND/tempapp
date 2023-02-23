@@ -12,7 +12,7 @@ class LocationController {
             },
             products : ProductService.getDeliveryProducts()
         }
-        axios.post(APIs.ORDER_POST,  order, AuthService.getAuthHeader());
+        axios.post(APIs.ORDER_POST,  order, AuthService.getAuthHeader())
     }
 }
 

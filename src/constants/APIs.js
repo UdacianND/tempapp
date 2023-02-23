@@ -1,7 +1,7 @@
 
-export const HOST = "https://29898fd4-f7fa-40b2-80ba-68ff449fc848.mock.pstmn.io"
-export const BASE = "/api/v1/shop"
-export const FULL = HOST 
+export const HOST ="https://tempapp-backend.herokuapp.com"
+export const BASE = "/api"
+export const FULL = HOST + BASE
  
 
 // Auth

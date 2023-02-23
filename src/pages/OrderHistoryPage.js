@@ -11,7 +11,9 @@ const OrderHistoryPage = () => {
     let lang = localStorage.getItem(Val.LANG)
 
     const [isHistoryCleaned, setIsHistoryCleaned] = React.useState(false)
-    const [orderedProducts, setOrderedProducts] = React.useState([])
+    const [orderedProducts, setOrderedProducts] = React.useState({
+        list:[]
+    })
 
     React.useEffect(()=>{
         getOrderedProducts()
@@ -29,10 +31,10 @@ const OrderHistoryPage = () => {
 
     async function getOrderedProducts(){
         let orderedProductList = await OrderHistoryController.getOrderHistory(lang)
-        setOrderedProducts({...orderedProductList})
+        setOrderedProducts(pre => ({...pre, list:orderedProductList}))
     } 
 
-    let itemComponents = orderedProducts.map(item => {
+    let itemComponents = orderedProducts.list.map(item => {
         return <OrderHistory order = {item} key={item.id}/>
     })
 

@@ -8,19 +8,20 @@ import * as Val from '../constants/Values'
 export default function InstitutionTypes(){
     let lang = localStorage.getItem(Val.LANG)
     const {tg} = useTelegram()
-    const [institutionTypes, setInsTypes] = React.useState([])
+    const [institutionTypes, setInsTypes] = React.useState({
+        list : []
+    })
     tg.BackButton.show()
-
-    async function getInsTypes(){
-        let insTypes = await InstitutionTypesController.getAllInstitutionTypes(lang)
-        setInsTypes({...insTypes})
-    }
     
     useEffect(()=>{
+        async function getInsTypes(){
+            let insTypes = await InstitutionTypesController.getAllInstitutionTypes(lang)
+            setInsTypes(pre => ({...pre, list:insTypes}))
+        }
         getInsTypes()
     },[])
 
-    let itemComponents = institutionTypes.map(item => {
+    let itemComponents = institutionTypes.list.map(item => {
         return <InstitutionType item = {item} key={item.id}/>
     })
 

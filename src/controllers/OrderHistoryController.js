@@ -5,9 +5,9 @@ import AuthService from '../service/AuthService';
 class OrderHistoryController{
     async getOrderHistory(lang){
         try {
-            const form = new FormData()
-            form.append('lang', lang)
-            const response = await axios.post(APIs.ORDER_HISTORY_LIST, form, AuthService.getAuthHeader());
+            const formData = new FormData();
+            formData.append('lang',lang)
+            const response = await axios.post(APIs.ORDER_HISTORY_LIST, formData, AuthService.getAuthHeaderWithoutBody());
             return response.data;
         } catch (err) {
             return err.response.status;
@@ -16,6 +16,7 @@ class OrderHistoryController{
 
     cleanHistory(){
         axios.delete(APIs.ORDER_HISTORY_CLEAR, AuthService.getAuthHeader())
+        .then( response => {console.log(response)}, error=>{console.log(error)} );
     }
 }
 

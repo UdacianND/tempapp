@@ -4,9 +4,8 @@ import axios from "axios";
 class ProductController {
     async getProductsByCategoryId(id, lang){
         try {
-            const form = new FormData()
-            form.append('lang', lang)
-            const response = await axios.post(APIs.PRODUCT_LIST+'/'+id, form);
+            const response = await axios.get(APIs.PRODUCT_LIST+'/'+id, 
+            { params: { lang } });
             return response.data;
         } catch (err) {
             return err.response.status;

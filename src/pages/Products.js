@@ -10,18 +10,20 @@ export default function Products(){
     const {id} = useParams()
     let lang = localStorage.getItem(Val.LANG)
 
-    const [products, setProducts] = React.useState([])
+    const [products, setProducts] = React.useState({
+        list:[]
+    })
 
     async function getProducts(){
         let productList = await ProductController.getProductsByCategoryId(id, lang)
-        setProducts({...productList})
+        setProducts(pre => ({...pre, list:productList}))
     }
 
     useEffect(()=>{
         getProducts()
     },[])
 
-    let itemComponents = products.map(item => {
+    let itemComponents = products.list.map(item => {
         return <Product product = {item} key={item.id}/>
     })
 

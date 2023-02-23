@@ -17,20 +17,27 @@ class AuthService {
         }
     }
     
-    async register(user) {
+    async register(user, id) {
         try {
-            const response = await axios.post(APIs.REGISTER, user);
+            let loginUser = {
+                phoneNumber : user.phoneNumber,
+                password : user.password,
+                chatId : id
+            }
+            const response = await axios.post(APIs.REGISTER, loginUser);
             return response.status;
         } catch (err) {
             return err.response.status;
         }
     }
 
-    async confirm(number){
+    async confirm(id, number){
         try {
-            const form = new FormData()
-            form.append('confirmationCode', number)
-            const response = await axios.post(APIs.CONFIRM, form);
+            let userData = {
+                chatId : id,
+                confirmationCode : number
+            }
+            const response = await axios.post(APIs.CONFIRM, userData);
             this.setUserToken(response.data)
             return response.status;
         } catch (err) {
@@ -44,16 +51,25 @@ class AuthService {
 
     getCurrentUser() {
         let user = localStorage.getItem("user");
-        if(user == '') return null
-        else return JSON.parse(user);
+        if(user == null) return null
+        return JSON.parse(user);
       }
     
 
     getAuthHeader(){
+        let token = this.getCurrentUser().accessToken
         return {
           headers : {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+this.getCurrentUser().accessToken
+            'Authorization': 'Bearer '+ token
+          }
+        }    
+      }
+      getAuthHeaderWithoutBody(){
+        let token = this.getCurrentUser().accessToken
+        return {
+          headers : {
+            'Authorization': 'Bearer '+ token
           }
         }    
       }

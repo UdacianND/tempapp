@@ -4,9 +4,8 @@ import axios from "axios";
 class InstitutionTypesController {
     async getAllInstitutionTypes(lang){
         try {
-            const form = new FormData()
-            form.append('lang', lang)
-            const response = await axios.post(APIs.INSTITUTION_TYPE_LIST, form);
+            const response = await axios.get(APIs.INSTITUTION_TYPE_LIST, 
+                { params: { lang } });
             return response.data;
         } catch (err) {
             return err.response.status;

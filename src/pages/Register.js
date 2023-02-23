@@ -4,11 +4,12 @@ import * as RS from '../constants/ResponseStatus'
 import { Link } from 'react-router-dom'; 
 import { useNavigate } from "react-router-dom";
 import * as Page from '../constants/Pages'
+import { useTelegram } from "../hooks/useTelegram";
 
 export default function Register() {
     const navigate = useNavigate();
-
-    const [user, setUser] = React.useState({
+    const {user} = useTelegram()
+    const [userLogin, setUser] = React.useState({
         phoneNumber: '+998',
         password: ''
     });
@@ -25,7 +26,7 @@ export default function Register() {
 
     async function handleSubmit(event) {
         event.preventDefault() 
-        let status = await AuthService.register(user);
+        let status = await AuthService.register(userLogin, user.id);
         switch(status){
             case RS.SUCCESS:
                 navigate(Page.CONFIRM)
@@ -48,7 +49,7 @@ export default function Register() {
                             type='text'
                             className='form-control'
                             id='phoneNumber'
-                            value={user.phoneNumber}
+                            value={userLogin.phoneNumber}
                             name='phoneNumber'
                             onChange={handleChange}
                             placeholder='Tel: +998914443359'
@@ -61,7 +62,7 @@ export default function Register() {
                             type='password'
                             className='form-control'
                             id='password'
-                            value={user.password}
+                            value={userLogin.password}
                             name='password'
                             onChange={handleChange}
                             placeholder='Parol'

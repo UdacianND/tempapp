@@ -4,9 +4,8 @@ import axios from "axios";
 class CategoryController {
     async getCategoriesByInstitutionId(id, lang){ 
         try {
-            const form = new FormData()
-            form.append('lang', lang)
-            const response = await axios.post(APIs.CATEGORY_LIST +'/'+id, form);
+            const response = await axios.get(APIs.CATEGORY_LIST +'/'+id, 
+            { params: { lang } });
             return response.data;
         } catch (err) {
             return err.response.status;

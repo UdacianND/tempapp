@@ -3,8 +3,10 @@ import AuthService from "../service/AuthService";
 import * as RS from '../constants/ResponseStatus'
 import { useNavigate } from "react-router-dom";
 import * as Page from '../constants/Pages'
+import { useTelegram } from "../hooks/useTelegram";
 
 export default function Confirm() {
+    const {user} = useTelegram()
     const [smsCode, setSmsCode] = React.useState('');
 
     const navigate = useNavigate();
@@ -18,7 +20,7 @@ export default function Confirm() {
 
     async function handleSubmit(event) {
         event.preventDefault()
-        let status = await AuthService.confirm(smsCode);
+        let status = await AuthService.confirm(user.id, smsCode);
         switch(status){
             case RS.SUCCESS:
                 navigate(Page.HOME)

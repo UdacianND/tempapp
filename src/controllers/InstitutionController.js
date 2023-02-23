@@ -5,9 +5,8 @@ class InstitutionController {
 
     async getInstitutionsByTypeId(id, lang){
         try {
-            const form = new FormData()
-            form.append('lang', lang)
-            const response = await axios.post(APIs.INSTITUTION_LIST +'/'+id, form);
+            const response = await axios.get(APIs.INSTITUTION_LIST +'/'+id, 
+            { params: { lang } });
             return response.data;
         } catch (err) {
             return err.response.status;

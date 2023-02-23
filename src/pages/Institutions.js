@@ -8,18 +8,20 @@ import * as Val from '../constants/Values'
 export default function Institutions(){
     let lang = localStorage.getItem(Val.LANG)
     const { id } = useParams()
-    const [institutions, setInstitutions] = React.useState([])
+    const [institutions, setInstitutions] = React.useState({
+        list:[]
+    })
 
     async function getInstitutions(){
         let institutions = await InstitutionController.getInstitutionsByTypeId(id, lang)
-        setInstitutions({...institutions})
+        setInstitutions(pre => ({...pre, list:institutions}))
     }
 
     useEffect(()=>{
         getInstitutions()
     },[])
 
-    let itemComponents = institutions.map(item => {
+    let itemComponents = institutions.list.map(item => {
         return <Institution item = {item} key={item.id}/>
     })
   

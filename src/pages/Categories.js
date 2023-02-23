@@ -9,18 +9,20 @@ export default function Categories(){
     const {id} = useParams()
     let lang = localStorage.getItem(Val.LANG)
 
-    const [categories, setCategories] = React.useState([])
+    const [categories, setCategories] = React.useState({
+        list:[]
+    })
 
     async function getCategories(){
         let categoryList = await CategoryController.getCategoriesByInstitutionId(id, lang)
-        setCategories({...categoryList})
+        setCategories(pre => ({...pre, list:categoryList}))
     }
 
     useEffect(()=>{
         getCategories()
     },[])
     
-    let itemComponents = categories.map(item => {
+    let itemComponents = categories.list.map(item => {
         return <Category item = {item} key={item.id}/>
     })
  
