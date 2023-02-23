@@ -4,10 +4,16 @@ import OrderHistoryController from "../controllers/OrderHistoryController";
 import OrderHistory from "../components/OrderHistory";
 import L from "../words/L";
 import * as Val from '../constants/Values'
+import { useNavigate } from "react-router-dom";
+import * as Page from '../constants/Pages'
 
 const OrderHistoryPage = () => {
+    const navigate = useNavigate();
     const tg = window.Telegram.WebApp
     tg.BackButton.show()
+    tg.BackButton.onClick(()=>{
+        navigate(Page.HOME)
+    })
     let lang = localStorage.getItem(Val.LANG)
 
     const [isHistoryCleaned, setIsHistoryCleaned] = React.useState(false)
