@@ -2,10 +2,9 @@ import * as APIs from '../constants/APIs'
 import axios from "axios";
 
 class CategoryController {
-    async getCategoriesByInstitutionId(id, lang){ 
+    async getCategoriesByInstitutionId(id){ 
         try {
-            const response = await axios.get(APIs.CATEGORY_LIST +'/'+id, 
-            { params: { lang } });
+            const response = await axios.get(APIs.CATEGORY_LIST +'/'+id);
             return response.data;
         } catch (err) {
             return err.response.status;

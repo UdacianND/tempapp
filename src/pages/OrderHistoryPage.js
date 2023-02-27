@@ -22,7 +22,7 @@ const OrderHistoryPage = () => {
     },[])
 
     async function getOrderedProducts(){
-        let orderedProductList = await OrderHistoryController.getOrderHistory(lang)
+        let orderedProductList = await OrderHistoryController.getOrderHistory()
         setOrderedProducts(pre => ({...pre, list:orderedProductList}))
     } 
 

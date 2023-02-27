@@ -9,37 +9,28 @@ class AuthService {
     
     async login(user) {
         try {
-            const response = await axios.post(APIs.LOGIN, user);
-            this.setUserToken(response.data)
-            return response.status;
-        } catch (err) {
-            return err.response.status;
-        }
-    }
-    
-    async register(user, id) {
-        try {
-            let loginUser = {
-                phoneNumber : user.phoneNumber,
-                password : user.password,
-                chatId : id
-            }
-            const response = await axios.post(APIs.REGISTER, loginUser);
-            return response.status;
+            let form = new FormData()
+            form.append('phoneNumber', user.phoneNumber)
+            localStorage.setItem(Val.PHONE_NUMBER, user.phoneNumber)
+
+            const response = await axios.post(APIs.LOGIN, form);
+            return response.success;
         } catch (err) {
             return err.response.status;
         }
     }
 
-    async confirm(id, number){
+    async confirm(number){
         try {
+            let tel = localStorage.getItem(Val.PHONE_NUMBER)
             let userData = {
-                chatId : id,
-                confirmationCode : number
+                phoneNumber : tel,
+                smsCode : number
             }
             const response = await axios.post(APIs.CONFIRM, userData);
-            this.setUserToken(response.data)
-            return response.status;
+            if(response.success)
+                this.setUserToken(response.data)
+            return response.success;
         } catch (err) {
             return err.response.status;
         }

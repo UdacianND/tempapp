@@ -3,11 +3,9 @@ import axios from "axios";
 import AuthService from '../service/AuthService';
 
 class OrderHistoryController{
-    async getOrderHistory(lang){
+    async getOrderHistory(){
         try {
-            const formData = new FormData();
-            formData.append('lang',lang)
-            const response = await axios.post(APIs.ORDER_HISTORY_LIST, formData, AuthService.getAuthHeaderWithoutBody());
+            const response = await axios.post(APIs.ORDER_HISTORY_LIST, null, AuthService.getAuthHeaderWithoutBody());
             return response.data;
         } catch (err) {
             return err.response.status;
@@ -25,101 +23,17 @@ export default new OrderHistoryController()
 // return [
 //     { 
 //         id : 1,
-//         date: '10-01-2023',
-//         products :[
+//         overallPrice : 12000,
+//         deliveryPrice : 2000,
+//         deliveryTime: '10-01-2023',
+//         orderProducts :[
 //             {
-//                 id: 1,
-//                 name: 'Coca cola',
-//                 count : 2,
-//                 price: 9000,
-//                 institution : 'Oqtepa lavash'
-//             },
-//             {
-//                 id: 2,
-//                 name: 'Lavash',
-//                 count : 1,
-//                 price: 24000,
-//                 institution : 'Oqtepa lavash'
-//             }
-//         ]
-//     },
-//     {
-//         id : 2,
-//         date: '10-01-2023',
-//         products :[
-//             {
-//                 id: 3,
-//                 name: 'Coca cola',
-//                 count : 2,
-//                 price: 9000,
-//                 institution : 'Oqtepa lavash'
-//             },
-//             {
-//                 id: 4,
-//                 name: 'Lavash',
-//                 count : 1,
-//                 price: 24000,
-//                 institution : 'Oqtepa lavash'
-//             }
-//         ]
-//     },
-//     {
-//         id : 3,
-//         date: '10-01-2023',
-//         products :[
-//             {
-//                 id: 5,
-//                 name: 'Coca cola',
-//                 count : 2,
-//                 price: 9000,
-//                 institution : 'Oqtepa lavash'
-//             },
-//             {
-//                 id: 6,
-//                 name: 'Lavash',
-//                 count : 1,
-//                 price: 24000,
-//                 institution : 'Oqtepa lavash'
-//             }
-//         ]
-//     },
-//     {
-//         id : 4,
-//         date: '10-01-2023',
-//         products :[
-//             {
-//                 id: 7,
-//                 name: 'Coca cola',
-//                 count : 2,
-//                 price: 9000,
-//                 institution : 'Oqtepa lavash'
-//             },
-//             {
-//                 id: 8,
-//                 name: 'Lavash',
-//                 count : 1,
-//                 price: 24000,
-//                 institution : 'Oqtepa lavash'
-//             }
-//         ]
-//     },
-//     {
-//         id : 5,
-//         date: '10-01-2023',
-//         products :[
-//             {
-//                 id: 9,
-//                 name: 'Coca cola',
-//                 count : 2,
-//                 price: 9000,
-//                 institution : 'Oqtepa lavash'
-//             },
-//             {
-//                 id: 10,
-//                 name: 'Lavash',
-//                 count : 1,
-//                 price: 24000,
-//                 institution : 'Oqtepa lavash'
+//                 product: {
+//                     nameUz : 'Cola',
+//                     nameRu : 'ColaRu',
+//                 },
+//                 quantity : 2,
+//                 price : 19000
 //             }
 //         ]
 //     }

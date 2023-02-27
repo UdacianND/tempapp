@@ -21,7 +21,11 @@ export default function InstitutionTypes(){
         getInsTypes()
     },[])
 
-    let itemComponents = institutionTypes.list.map(item => {
+    let itemComponents = institutionTypes.list.map(insT => {
+        let item = {
+            id : insT.id,
+            name : lang === 'uz'? insT.nameUz : insT.nameRu
+        }
         return <InstitutionType item = {item} key={item.id}/>
     })
 

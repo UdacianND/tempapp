@@ -2,10 +2,9 @@ import * as APIs from '../constants/APIs'
 import axios from "axios";
 
 class InstitutionTypesController {
-    async getAllInstitutionTypes(lang){
+    async getAllInstitutionTypes(){
         try {
-            const response = await axios.get(APIs.INSTITUTION_TYPE_LIST, 
-                { params: { lang } });
+            const response = await axios.get(APIs.INSTITUTION_TYPE_LIST);
             return response.data;
         } catch (err) {
             return err.response.status;

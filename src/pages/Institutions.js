@@ -21,7 +21,12 @@ export default function Institutions(){
         getInstitutions()
     },[])
 
-    let itemComponents = institutions.list.map(item => {
+    let itemComponents = institutions.list.map(ins => {
+        let item = {
+            id : ins.id,
+            name : lang === 'uz'? ins.nameUz : ins.nameRu,
+            imageUrl : ins.imageUrl
+        }
         return <Institution item = {item} key={item.id}/>
     })
   

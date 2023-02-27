@@ -91,8 +91,8 @@ class ProductService {
         for(const prop in this.products){
             console.log(this.products[prop])
             orders.push({
-                id : this.products[prop].id,
-                count : this.products[prop].count,
+                productId : this.products[prop].id,
+                quantity : this.products[prop].count,
             })
         }
         return orders;

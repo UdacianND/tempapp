@@ -3,10 +3,9 @@ import AuthService from "../service/AuthService";
 import * as RS from '../constants/ResponseStatus'
 import { useNavigate } from "react-router-dom";
 import * as Page from '../constants/Pages'
-import { useTelegram } from "../hooks/useTelegram";
+import * as Val from '../constants/Values'
 
 export default function Confirm() {
-    const {user} = useTelegram()
     const [smsCode, setSmsCode] = React.useState('');
 
     const navigate = useNavigate();
@@ -20,24 +19,19 @@ export default function Confirm() {
 
     async function handleSubmit(event) {
         event.preventDefault()
-        let status = await AuthService.confirm(user.id, smsCode);
-        switch(status){
-            case RS.SUCCESS:
-                navigate(Page.HOME)
-                break;
-            case RS.BAD_CREDENTIALS:
-                setMsg("Noto'g'ri ma'lumot")
-                break;
-            default :
-                setMsg('Unknown error: ' + status)
-        }
+        let isSuccess = await AuthService.confirm(smsCode);
+        if(isSuccess)
+            navigate(Page.HOME)
+        else
+            setMsg("Noto'g'ri ma'lumot")
     }
 
     return (
         <div className='container'>
             <div className="col-md-12 card">
                 <form className='form' onSubmit={handleSubmit}>
-                    <h5  className="mb-2 form-header">Kodni tasdiqlash</h5>
+                    <h5  className="mb-2 form-header">Tasdiqlash kodi<br></br>
+                    Код подтверждения</h5>
                     <div className='form-group mb-3'>
                         <input
                             type='text'
@@ -48,8 +42,8 @@ export default function Confirm() {
                             onChange={handleChange}
                             placeholder='Tasdiqlash kodi'
                             required
-                            minlength="5" 
-                            maxlength="5"
+                            minlength={Val.CONFIRM_CODE_LENGTH}
+                            maxlength={Val.CONFIRM_CODE_LENGTH}
                         />
                     </div>
 

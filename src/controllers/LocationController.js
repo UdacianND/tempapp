@@ -10,7 +10,7 @@ class LocationController {
                 latitude : i_latitude,
                 longitude : i_longitude
             },
-            products : ProductService.getDeliveryProducts()
+            orderProducts : ProductService.getDeliveryProducts()
         }
         axios.post(APIs.ORDER_POST,  order, AuthService.getAuthHeader())
     }

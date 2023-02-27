@@ -2,7 +2,6 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Login from './pages/Login'
-import Register from './pages/Register'
 import Confirm from './pages/Confirm'
 import Home from './pages/Home'
 import Institutions from './pages/Institutions'
@@ -22,7 +21,6 @@ function App() {
       <Routes>
         <Route path={Page.LOGIN} element={<Login/>} />
         <Route path={Page.LOGOUT} element={<Logout/>} />
-        <Route path={Page.REGISTER} element={<Register/>} />
         <Route path={Page.CONFIRM} element={<Confirm/>} />
         <Route path={Page.HOME}>
           <Route index element={<Home />} />

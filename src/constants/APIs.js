@@ -1,13 +1,12 @@
 
-export const HOST ="https://tempapp-backend.herokuapp.com"
-export const BASE = "/api"
+export const HOST ="https://localhost:8090"
+export const BASE = "/api/v1/shop"
 export const FULL = HOST + BASE
  
 
 // Auth
-export const LOGIN = FULL +  "/auth/login" //POST body : phoneNumber, password
-export const REGISTER = FULL + "/auth/register" //POST body : phoneNumber, password
-export const CONFIRM = FULL + "/auth/confirm" //POST query : confirmationCode
+export const LOGIN = FULL +  "/auth/get/sms-code" //POST body : phoneNumber, password
+export const CONFIRM = FULL + "/auth/client/signin-or-signup" //POST query : confirmationCode
 
 // Institutions
 export const INSTITUTION_TYPE_LIST = FULL + "/institutionTypes" //GET

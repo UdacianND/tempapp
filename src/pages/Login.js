@@ -11,7 +11,6 @@ export default function Login() {
 
     const [loginUser, setLoginUser] = React.useState({
         phoneNumber: '+998',
-        password: ''
     });
 
     const [msg, setMsg] = React.useState('')
@@ -26,24 +25,19 @@ export default function Login() {
 
     async function handleSubmit(event) {
         event.preventDefault()
-        let status =await AuthService.login(loginUser)
-        switch(status){
-            case RS.SUCCESS:
-                navigate(Page.HOME)
-                break;
-            case RS.BAD_CREDENTIALS:
-                setMsg("Noto'g'ri ma'lumot")
-                break;
-            default :
-                setMsg('Unknown error: ' + status)
-        }
+        let isSuccess =await AuthService.login(loginUser)
+        if(isSuccess)
+            navigate(Page.CONFIRM)
+        else                
+            setMsg("Noto'g'ri ma'lumot-")
     }
 
     return (
         <div className='container'>
             <div className="col-md-12 card">
                 <form className='form form-login' onSubmit={handleSubmit}>
-                    <h5 className="mb-2 form-header">Kirish</h5>
+                    <h5 className="mb-2 form-header">Telefon raqamingizni kiriting<br></br>
+                    Введите свой номер телефона</h5>
                     <div className='form-group mb-3'>
                         <input
                             type='text'
@@ -57,19 +51,6 @@ export default function Login() {
                             required
                         />
                     </div>
-
-                    <div className='form-group mb-4'>
-                        <input
-                            type='password'
-                            className='form-control'
-                            id='password'
-                            value={loginUser.password}
-                            name='password'
-                            onChange={handleChange}
-                            placeholder='Parol'
-                            required="required"
-                        />
-                    </div>
                     <div className='form-group mb-3'>
                         <button type='submit' className='btn btn-primary col-md-12'>
                             Yuborish
@@ -77,9 +58,6 @@ export default function Login() {
                     </div>
                     <div className='form-group'>
                         {msg && <h6 style={{color:"red"}}>{msg}</h6>}
-                    </div>  
-                    <div className='form-group'>
-                       Hisobingiz yo'qmi? <Link to={Page.REGISTER}>Ro'yhatdan o'ting!</Link>
                     </div>        
                 </form>
             </div>

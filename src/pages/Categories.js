@@ -22,7 +22,11 @@ export default function Categories(){
         getCategories()
     },[])
     
-    let itemComponents = categories.list.map(item => {
+    let itemComponents = categories.list.map(category => {
+        let item = {
+            id : category.id,
+            name : lang === 'uz'? category.nameUz : category.nameRu
+        }
         return <Category item = {item} key={item.id}/>
     })
  
