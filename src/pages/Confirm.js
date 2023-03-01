@@ -42,8 +42,8 @@ export default function Confirm() {
                             onChange={handleChange}
                             placeholder='Tasdiqlash kodi'
                             required
-                            minlength={Val.CONFIRM_CODE_LENGTH}
-                            maxlength={Val.CONFIRM_CODE_LENGTH}
+                            minLength={Val.CONFIRM_CODE_LENGTH}
+                            maxLength={Val.CONFIRM_CODE_LENGTH}
                         />
                     </div>
 

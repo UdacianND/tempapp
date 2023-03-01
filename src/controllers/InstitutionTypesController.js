@@ -5,9 +5,9 @@ class InstitutionTypesController {
     async getAllInstitutionTypes(){
         try {
             const response = await axios.get(APIs.INSTITUTION_TYPE_LIST);
-            return response.data;
+            return response.data.data;
         } catch (err) {
-            return err.response.status;
+            return [];
         }
     }
 }

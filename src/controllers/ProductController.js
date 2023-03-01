@@ -5,7 +5,8 @@ class ProductController {
     async getProductsByCategoryId(id){
         try {
             const response = await axios.get(APIs.PRODUCT_LIST+'/'+id);
-            return response.data;
+            console.log(response.data.data)
+            return response.data.data;
         } catch (err) {
             return err.response.status;
         }

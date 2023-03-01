@@ -15,7 +15,7 @@ export default function Products(){
     })
 
     async function getProducts(){
-        let productList = await ProductController.getProductsByCategoryId(id, lang)
+        let productList = await ProductController.getProductsByCategoryId(id)
         setProducts(pre => ({...pre, list:productList}))
     }
 
@@ -23,7 +23,13 @@ export default function Products(){
         getProducts()
     },[])
 
-    let itemComponents = products.list.map(item => {
+    let itemComponents = products.list.map(product => {
+        let item = {
+            id : product.id,
+            name : lang === 'uz'?product.nameUz:product.nameRu,
+            imageUrl : product.imageUrl,
+            price : product.price
+        }
         return <Product product = {item} key={item.id}/>
     })
 

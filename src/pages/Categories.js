@@ -14,7 +14,7 @@ export default function Categories(){
     })
 
     async function getCategories(){
-        let categoryList = await CategoryController.getCategoriesByInstitutionId(id, lang)
+        let categoryList = await CategoryController.getCategoriesByInstitutionId(id)
         setCategories(pre => ({...pre, list:categoryList}))
     }
 

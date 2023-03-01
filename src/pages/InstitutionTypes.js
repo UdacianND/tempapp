@@ -15,7 +15,7 @@ export default function InstitutionTypes(){
 
     useEffect(()=>{
         async function getInsTypes(){
-            let insTypes = await InstitutionTypesController.getAllInstitutionTypes(lang)
+            let insTypes = await InstitutionTypesController.getAllInstitutionTypes()
             setInsTypes(pre => ({...pre, list:insTypes}))
         }
         getInsTypes()

@@ -14,7 +14,7 @@ class AuthService {
             localStorage.setItem(Val.PHONE_NUMBER, user.phoneNumber)
 
             const response = await axios.post(APIs.LOGIN, form);
-            return response.success;
+            return response.data.success;
         } catch (err) {
             return err.response.status;
         }
@@ -28,11 +28,11 @@ class AuthService {
                 smsCode : number
             }
             const response = await axios.post(APIs.CONFIRM, userData);
-            if(response.success)
-                this.setUserToken(response.data)
-            return response.success;
+            if(response.data.success)
+                this.setUserToken(response.data.data)
+            return true
         } catch (err) {
-            return err.response.status;
+            return false;
         }
     }
 

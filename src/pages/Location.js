@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {useTelegram} from "../hooks/useTelegram";
 import { useGeolocated } from "react-geolocated";
 import LocationController from "../controllers/LocationController";
@@ -13,6 +13,8 @@ const Location = () => {
     const {tg} = useTelegram()
     tg.MainButton.hide()
     tg.BackButton.hide()
+
+    const [isLocationDetected, setLocationDetected] = useState(false)
     
     const { coords, isGeolocationAvailable } =
         useGeolocated({
@@ -22,9 +24,20 @@ const Location = () => {
             userDecisionTimeout: 6000,
         });
 
+    async function sendLocation(){
+        if(isLocationDetected){
+            await LocationController.sendLocationInfo(coords.latitude, coords.longitude)
+        }
+    }
+
+    useEffect(()=>{
+        sendLocation()
+    }, [isLocationDetected])
+
     if(isGeolocationAvailable){
         if(coords){
-            LocationController.sendLocationInfo(coords.latitude, coords.longitude)
+            if(!isLocationDetected)
+                setLocationDetected(true)
             return (
                 <div className="locationPage">
                     <h4> <L w='locatedSuccess'/> <br></br> 

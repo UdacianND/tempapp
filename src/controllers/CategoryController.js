@@ -5,7 +5,7 @@ class CategoryController {
     async getCategoriesByInstitutionId(id){ 
         try {
             const response = await axios.get(APIs.CATEGORY_LIST +'/'+id);
-            return response.data;
+            return response.data.data;
         } catch (err) {
             return err.response.status;
         }

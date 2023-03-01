@@ -35,7 +35,7 @@ export default function Product({product}) {
                     {item.name}
                 </div>
                 <div className="product-price">
-                    {item.price}
+                    {item.price} so'm
                 </div>
             </div>
             <div className="product-order">

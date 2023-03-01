@@ -13,7 +13,7 @@ class ProductService {
         for(const prop in this.products){
             console.log(this.products[prop])
             orders.push({
-                id : this.products[prop].id,
+                id : prop,
                 name : this.products[prop].name,
                 count : this.products[prop].count,
                 price : this.products[prop].price
@@ -35,6 +35,7 @@ class ProductService {
     }
 
     saveProduct(product){
+        console.log(product)
         this.products = this.getProducts()
         if(product.count === 0)
             delete this.products[product.id]
@@ -91,7 +92,7 @@ class ProductService {
         for(const prop in this.products){
             console.log(this.products[prop])
             orders.push({
-                productId : this.products[prop].id,
+                productId : prop,
                 quantity : this.products[prop].count,
             })
         }

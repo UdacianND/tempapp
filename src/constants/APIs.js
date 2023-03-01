@@ -1,5 +1,5 @@
 
-export const HOST ="https://localhost:8090"
+export const HOST ="http://localhost:8090"
 export const BASE = "/api/v1/shop"
 export const FULL = HOST + BASE
  
@@ -9,19 +9,19 @@ export const LOGIN = FULL +  "/auth/get/sms-code" //POST body : phoneNumber, pas
 export const CONFIRM = FULL + "/auth/client/signin-or-signup" //POST query : confirmationCode
 
 // Institutions
-export const INSTITUTION_TYPE_LIST = FULL + "/institutionTypes" //GET
+export const INSTITUTION_TYPE_LIST = FULL + "/institutionType" //GET
 
 // Institutions
-export const INSTITUTION_LIST = FULL + "/institutions/type" //GET path : typeId
+export const INSTITUTION_LIST = FULL + "/institution/all/by_type" //GET path : typeId
 
 //Categories
-export const CATEGORY_LIST = FULL + "/categories/institution" //GET path : insId
+export const CATEGORY_LIST = FULL + "/category/institution" //GET path : insId
 
 //Products
-export const PRODUCT_LIST = FULL + "/products/category" //GET path : catId 
+export const PRODUCT_LIST = FULL + "/product/category" //GET path : catId 
 
 //Order
-export const ORDER_POST = FULL + "/order" //POST path : body : order
+export const ORDER_POST = FULL + "/order/add" //POST path : body : order
 
 //Order hitory
 export const ORDER_HISTORY_LIST = FULL + "/order/history" //GET 

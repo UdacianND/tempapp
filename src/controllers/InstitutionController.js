@@ -6,9 +6,9 @@ class InstitutionController {
     async getInstitutionsByTypeId(id){
         try {
             const response = await axios.get(APIs.INSTITUTION_LIST +'/'+id);
-            return response.data;
+            return response.data.data;
         } catch (err) {
-            return err.response.status;
+            return [];
         }
     }
 }
