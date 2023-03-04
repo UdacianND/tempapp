@@ -24,6 +24,6 @@ export const PRODUCT_LIST = FULL + "/product/category" //GET path : catId
 export const ORDER_POST = FULL + "/order/add" //POST path : body : order
 
 //Order hitory
-export const ORDER_HISTORY_LIST = FULL + "/order/history" //GET 
+export const ORDER_HISTORY_LIST = FULL + "/client/my-orders" //GET 
 export const ORDER_HISTORY_CLEAR = FULL + "/order/history" //DELETE 
 

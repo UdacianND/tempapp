@@ -1,9 +1,8 @@
 import React from "react";
 import AuthService from "../service/AuthService";
-import * as RS from '../constants/ResponseStatus'
-import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import * as Page from '../constants/Pages'
+import '../styles/Auth.css'
 
 export default function Login() {
 

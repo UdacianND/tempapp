@@ -42,7 +42,7 @@ const Location = () => {
                 <div className="locationPage">
                     <h4> <L w='locatedSuccess'/> <br></br> 
                     <L w='soonDeliver'/><br></br>
-                    <Link to="/"><L w='backHome'/></Link></h4>
+                    <Link to="/" className="backHome btn btn-primary"><L w='backHome'/></Link></h4>
                 </div>
             )
         }else{
@@ -57,7 +57,7 @@ const Location = () => {
             <div className="locationPage">
                 <h4> <L w='notLocated'/>
                 <br></br>
-                <Link to="/"><L w='backHome'/></Link>
+                <Link to="/" className="backHome"><L w='backHome'/></Link>
                 </h4>
             </div>
         )

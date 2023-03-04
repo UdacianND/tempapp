@@ -73,9 +73,7 @@ class ProductService {
         let lang = localStorage.getItem(Val.LANG)  
         let data = Words.data
 
-        const productsList = this.getOrderedProducts()
-        let totalPrice = productsList.length === 0 ? 0 : productsList.map(x=> x.price * x.count)
-        .reduce((total, current) => total + current)
+        let totalPrice = this.getTotalPrice()
         if(totalPrice === 0){
             tg.MainButton.hide()
         }else{
@@ -84,6 +82,13 @@ class ProductService {
             })
             tg.MainButton.show()
         }
+    }
+
+    getTotalPrice(){
+        const productsList = this.getOrderedProducts()
+        let totalPrice = productsList.length === 0 ? 0 : productsList.map(x=> x.price * x.count)
+        .reduce((total, current) => total + current)
+        return totalPrice;
     }
 
     getDeliveryProducts(){

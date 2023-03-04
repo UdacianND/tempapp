@@ -4,7 +4,12 @@ import * as Val from '../constants/Values'
 
 class AuthService {
     isAuthenticated(){
-        return localStorage.getItem(Val.USER) != null
+        let user = JSON.parse(localStorage.getItem(Val.USER))
+        if(user == null)
+            return false;
+        let expireMSeconds = user[Val.USER_TOKEN_EXPIRE]
+        let currentMSeconds = Date.now()
+        return currentMSeconds < expireMSeconds
     }
     
     async login(user) {
@@ -37,6 +42,8 @@ class AuthService {
     }
 
     setUserToken(user){
+        let mSeconds = Date.now() + Val.TOKEN_EXPIRE_IN_ADVANCE
+        user[Val.USER_TOKEN_EXPIRE] = mSeconds
         localStorage.setItem(Val.USER, JSON.stringify(user))
     }
 

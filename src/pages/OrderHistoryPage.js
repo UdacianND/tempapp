@@ -26,7 +26,21 @@ const OrderHistoryPage = () => {
         setOrderedProducts(pre => ({...pre, list:orderedProductList}))
     } 
 
-    let itemComponents = orderedProducts.list.map(item => {
+    let itemComponents = orderedProducts.list.map(order => {
+        let item = { 
+            overallPrice : order.overallPrice,
+            deliveryPrice : order.deliveryPrice,
+            deliveryTime: order.deliveryTime,
+            orderProducts :order.orderProducts.map(x => {
+                return {
+                    product: {
+                        name : lang === 'uz'? x.product.nameUz : x.nameRu
+                    },
+                    quantity : x.quantity,
+                    price : x.price
+                }
+            })
+        }
         return <OrderHistory order = {item} key={item.id}/>
     })
 

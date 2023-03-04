@@ -6,9 +6,9 @@ class OrderHistoryController{
     async getOrderHistory(){
         try {
             const response = await axios.post(APIs.ORDER_HISTORY_LIST, null, AuthService.getAuthHeaderWithoutBody());
-            return response.data;
+            return response.data.data;
         } catch (err) {
-            return err.response.status;
+            return [];
         }
     }
 

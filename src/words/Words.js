@@ -41,8 +41,8 @@ export default {
             "ru":"Ваш заказ будет доставлен в ближайшее время"
         },
         "backHome":{
-            "uz":"Bosh sahifaga qaytish",
-            "ru":"Вернуться на главную страницу"
+            "uz":"Bosh sahifa",
+            "ru":"Главная страница"
         },
         "clean":{
             "uz":"Tozalash",
@@ -51,6 +51,10 @@ export default {
         "yourOrder":{
             "uz":"Buyurtmangiz",
             "ru":"Ваш заказ"
+        },
+        "delivery":{
+            "uz":"Yetkazib berish",
+            "ru":"Доставка"
         }
     }
 }

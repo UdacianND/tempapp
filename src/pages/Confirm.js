@@ -1,9 +1,9 @@
 import React from "react"; 
 import AuthService from "../service/AuthService";
-import * as RS from '../constants/ResponseStatus'
 import { useNavigate } from "react-router-dom";
 import * as Page from '../constants/Pages'
 import * as Val from '../constants/Values'
+import '../styles/Auth.css'
 
 export default function Confirm() {
     const [smsCode, setSmsCode] = React.useState('');
@@ -29,7 +29,7 @@ export default function Confirm() {
     return (
         <div className='container'>
             <div className="col-md-12 card">
-                <form className='form' onSubmit={handleSubmit}>
+                <form className='form confirm' onSubmit={handleSubmit}>
                     <h5  className="mb-2 form-header">Tasdiqlash kodi<br></br>
                     Код подтверждения</h5>
                     <div className='form-group mb-3'>
