@@ -21,7 +21,7 @@ class AuthService {
             const response = await axios.post(APIs.LOGIN, form);
             return response.data.success;
         } catch (err) {
-            return err.response.status;
+            return false;
         }
     }
 
