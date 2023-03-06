@@ -45,6 +45,9 @@ export default function Home(){
 
     tg.MainButton.hide()
     tg.BackButton.hide()
+    tg.MainButton.setParams({
+        color: '#3de600'
+    })
 
     tg.MainButton.offClick(orderButton)
     tg.MainButton.onClick(orderButton)
