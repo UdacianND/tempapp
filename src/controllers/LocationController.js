@@ -13,7 +13,8 @@ class LocationController {
                 },
                 orderProducts : ProductService.getDeliveryProducts()
             }
-            console.log("location")
+            console.log(i_latitude)
+            console.log(i_longitude)
             await axios.post(APIs.ORDER_POST,  order, AuthService.getAuthHeader())
         } catch (err) {
             console.log(err)
