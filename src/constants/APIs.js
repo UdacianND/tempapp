@@ -1,5 +1,5 @@
 
-export const HOST ="https://068f-37-110-215-99.ap.ngrok.io"
+export const HOST ="https://30e1-37-110-210-66.eu.ngrok.io"
 export const BASE = "/api/v1/shop"
 export const FULL = HOST + BASE
  
