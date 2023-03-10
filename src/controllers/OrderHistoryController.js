@@ -5,7 +5,7 @@ import AuthService from '../service/AuthService';
 class OrderHistoryController{
     async getOrderHistory(){
         try {
-            const response = await axios.post(APIs.ORDER_HISTORY_LIST, null, AuthService.getAuthHeaderWithoutBody());
+            const response = await axios.post(APIs.ORDER_HISTORY_LIST, null, AuthService.getAuthHeader());
             return response.data.data;
         } catch (err) {
             return [];
