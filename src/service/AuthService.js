@@ -37,6 +37,7 @@ class AuthService {
                 this.setUserToken(response.data.data)
             return true
         } catch (err) {
+          console.log(err.response)
             return false;
         }
     }
@@ -63,14 +64,14 @@ class AuthService {
           }
         }    
       }
-      getAuthHeaderWithoutBody(){
-        let token = this.getCurrentUser().accessToken
+      getAppJsonHeader(){
         return {
           headers : {
-            'Authorization': 'Bearer '+ token
+            'Content-Type': 'application/json',
           }
         }    
       }
+
 }
 
 export default new AuthService();

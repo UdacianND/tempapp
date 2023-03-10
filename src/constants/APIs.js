@@ -1,12 +1,12 @@
 
-export const HOST ="https://30e1-37-110-210-66.eu.ngrok.io"
+export const HOST ="https://temp-app-backend.herokuapp.com"
 export const BASE = "/api/v1/shop"
 export const FULL = HOST + BASE
  
 
 // Auth
 export const LOGIN = FULL +  "/auth/get/sms-code" //POST body : phoneNumber, password
-export const CONFIRM = FULL + "/auth/client/signin-or-signup" //POST query : confirmationCode
+export const CONFIRM = FULL + "/auth/client/sign-in" //POST query : confirmationCode
 
 // Institutions
 export const INSTITUTION_TYPE_LIST = FULL + "/institutionType" //GET
