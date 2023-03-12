@@ -34,7 +34,7 @@ const OrderHistoryPage = () => {
             orderProducts :order.orderProducts.map(x => {
                 return {
                     product: {
-                        name : lang === 'uz'? x.product.nameUz : x.nameRu
+                        name : lang === 'uz'? x.product.nameUz : x.product.nameRu
                     },
                     quantity : x.quantity,
                     price : x.price

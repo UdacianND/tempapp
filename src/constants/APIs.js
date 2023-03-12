@@ -1,5 +1,5 @@
 
-export const HOST ="https://temp-app-backend.herokuapp.com"
+export const HOST ="http://localhost:8090" //"https://temp-app-backend.herokuapp.com"
 export const BASE = "/api/v1/shop"
 export const FULL = HOST + BASE
  

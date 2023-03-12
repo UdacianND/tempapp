@@ -14,7 +14,7 @@ export default function Home(){
     function backButton() {
         let currentPage = window.location.pathname;
         let msg = localStorage.getItem('lang') === 'uz'?'Buyurtma bekor qilindi':"Заказ отменен"
-        if(currentPage === Page.INSTITUTION_TYPES){
+        if(currentPage.startsWith('/institutions')){
             tg.showAlert(msg)
             window.history.back()
         }
