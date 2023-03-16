@@ -1,5 +1,5 @@
 
-export const HOST ="http://localhost:8090" //"https://temp-app-backend.herokuapp.com"
+export const HOST ="https://temp-app-backend.herokuapp.com" //"https://temp-app-backend.herokuapp.com"
 export const BASE = "/api/v1/shop"
 export const FULL = HOST + BASE
  
@@ -25,5 +25,5 @@ export const ORDER_POST = FULL + "/order/add" //POST path : body : order
 
 //Order hitory
 export const ORDER_HISTORY_LIST = FULL + "/client/my-orders" //GET 
-export const ORDER_HISTORY_CLEAR = FULL + "/order/history" //DELETE 
+export const ORDER_HISTORY_CLEAR = FULL + "/client/my-orders/clear" //DELETE 
 

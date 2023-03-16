@@ -37,8 +37,6 @@ export default function Home(){
     }
     let [lang, setLang] = React.useState(currentLang)
 
-    let data = Words.data
-
     const {tg} = useTelegram()
     if(!AuthService.isAuthenticated())
         return (<Navigate to={Page.LOGIN}/>)

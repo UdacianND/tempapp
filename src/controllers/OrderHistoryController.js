@@ -13,7 +13,7 @@ class OrderHistoryController{
     }
 
     cleanHistory(){
-        axios.delete(APIs.ORDER_HISTORY_CLEAR, AuthService.getAuthHeader())
+        axios.get(APIs.ORDER_HISTORY_CLEAR, AuthService.getAuthHeader())
         .then( response => {console.log(response)}, error=>{console.log(error)} );
     }
 }
